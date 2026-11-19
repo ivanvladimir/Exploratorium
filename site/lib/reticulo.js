@@ -1389,9 +1389,11 @@
             for (let i = 0; i < datum.labelObjects.length; i++) {
               const id = datum.labelObjects[i];
               const objDesc = d3.select("#obj-desc-" + getAttrId(id));
+              // createTextBox() derives the children's classes by appending
+              // "-box"/"-text" to eleClass, so "objects-label" must come last.
               let eleClass = "objects-label";
               if (!objDesc.empty() && objDesc.classed("hasinfo")) {
-                eleClass += " hasexp";
+                eleClass = "hasexp " + eleClass;
               }
 
               const textBox = group
