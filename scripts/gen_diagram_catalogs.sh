@@ -6,6 +6,10 @@ DBDSN=${1:-$DEFAULT_DBDSN}
 
 require_sqlite "$DBDSN"
 
+# Must run before the defaults below, or the committed pos.json and
+# config.js files would be shadowed by freshly written defaults.
+ensure_static_files
+
 while read -r lang; do
   while IFS=\| read -r context_id context; do
     diagram_dir=$(get_diagram_dir $lang $context)

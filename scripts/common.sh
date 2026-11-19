@@ -68,6 +68,42 @@ function require_inkscape {
   fi
 }
 
+# The site directory mixes generated files with hand-maintained ones
+# that are tracked in git (style.css, images/, lib/*.js, favicon.ico,
+# .htaccess, gravity-tree/{style.css,config.js,fonts}, and each
+# diagram's pos.json and config.js). The generators never create
+# those, so if SITEDIR is emptied or recreated they would be lost.
+# Restore any tracked file that is missing from the working tree.
+# Files that exist but were modified are left untouched, so local
+# edits (e.g. node positions saved from the diagram editor) are kept.
+function ensure_static_files {
+  mkdir -p "$SITEDIR"
+
+  if ! git -C "$SITEDIR" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "$0: warning: $SITEDIR is not inside a git work tree; cannot restore static files" >&2
+    return 0
+  fi
+
+  local count
+  count=$(git -C "$SITEDIR" ls-files --deleted -- . | wc -l)
+  if [ "$count" -gt 0 ]; then
+    echo "Restoring $count missing static file(s) in $SITEDIR from git"
+    git -C "$SITEDIR" ls-files -z --deleted -- . |
+      xargs -0 git -C "$SITEDIR" checkout --
+  fi
+}
+
+function require_static_files {
+  local missing=0 f
+  for f in style.css favicon.ico lib/reticulo.js lib/mathjax-config.js; do
+    if [ ! -e "$SITEDIR/$f" ]; then
+      echo "$0: missing $SITEDIR/$f" >&2
+      missing=1
+    fi
+  done
+  return $missing
+}
+
 function get_diagram_dir {
   printf "$DIAGRAMDIR" "$@"
 }

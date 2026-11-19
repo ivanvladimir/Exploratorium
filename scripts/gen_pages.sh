@@ -6,6 +6,8 @@ DBDSN=${1:-$DEFAULT_DBDSN}
 
 require_sqlite "$DBDSN"
 
+ensure_static_files
+
 "$SCRIPTDIR"/gen_gravitytree.sh
 
 ttdir="$PROJECTDIR/tt"
