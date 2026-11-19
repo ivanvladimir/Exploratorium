@@ -100,7 +100,8 @@
       return undefined;
     }
 
-    function mergeNodePos(nodes, nodePos) {
+    function mergeNodePos(nodes, nodePos, viewBox) {
+      const placed = new Set();
       for (let pos of nodePos) {
         let node = getNodeByHash(nodes, pos.hash, pos.concept);
         if (!node) {
@@ -111,7 +112,47 @@
         }
         node.x = pos.x;
         node.y = pos.y;
+        placed.add(node);
       }
+      hierarchyLayout(nodes.filter((node) => !placed.has(node)), nodes, viewBox);
+    }
+
+    // Nodes without a stored position (e.g. a new diagram whose pos.json
+    // is still empty, or concepts added since it was saved) are laid out
+    // by hierarchy level: level 0 at the bottom, the highest level at the
+    // top, and the nodes of each level spread evenly across the view box.
+    function hierarchyLayout(unplaced, nodes, viewBox) {
+      if (unplaced.length === 0) {
+        return;
+      }
+
+      const levelOf = (node) => parseInt(node.level) || 0;
+      const maxLevel = nodes.reduce((max, node) => Math.max(max, levelOf(node)), 0);
+
+      const byLevel = new Map();
+      for (const node of unplaced) {
+        const level = levelOf(node);
+        if (!byLevel.has(level)) {
+          byLevel.set(level, []);
+        }
+        byLevel.get(level).push(node);
+      }
+
+      const marginX = viewBox.width * 0.05;
+      const marginY = viewBox.height * 0.1;
+      const width = viewBox.width - 2 * marginX;
+      const height = viewBox.height - 2 * marginY;
+
+      for (const [level, row] of byLevel) {
+        const y = maxLevel > 0 ? height * (maxLevel - level) / maxLevel : height / 2;
+        row.forEach((node, i) => {
+          node.x = viewBox.offsetX + marginX + width * (i + 1) / (row.length + 1);
+          node.y = viewBox.offsetY + marginY + y;
+        });
+      }
+
+      console.warn(`${unplaced.length} of ${nodes.length} nodes have no position in pos.json; ` +
+                   "placed by hierarchy level");
     }
 
     function levelTextSetPos(textEle, config) {
@@ -295,6 +336,7 @@
 
     function infoboxClosedCB() {
       window.info_attr_id = undefined;
+      window.info_obj_id = undefined;
     }
 
     function htmlIfNotEmpty(ele) {
@@ -324,6 +366,7 @@
         return;
       }
       window.info_attr_id = attr_id;
+      window.info_obj_id = undefined;
 
       infocont.html("");
       infocont.append("h2")
@@ -337,6 +380,39 @@
       infocont.append("div")
         .classed("ref", true)
         .html(htmlIfNotEmpty(d3.select(`#attr-desc-${attr_id} .attr-desc-ref`)));
+
+      infobox.style("display", "block");
+    }
+
+    function objectClick(event, infobox) {
+      event.stopPropagation();
+
+      const obj = d3.select(event.currentTarget).property("object");
+      const obj_id = getAttrId(obj);
+      const desc = d3.select(`#obj-desc-${obj_id}`);
+
+      if (desc.empty() || !desc.classed("hasinfo")) {
+        return;
+      }
+
+      if (window.info_obj_id != null &&
+          obj_id == window.info_obj_id) {
+        floatboxClose(infobox, infoboxClosedCB);
+        return;
+      }
+      window.info_obj_id = obj_id;
+      window.info_attr_id = undefined;
+
+      const infocont = infobox.select(".cont");
+      infocont.html("");
+      infocont.append("h2")
+        .html(htmlIfNotEmpty(desc.select(".obj-desc-title")));
+      infocont.append("div")
+        .classed("exp", true)
+        .html(htmlIfNotEmpty(desc.select(".obj-desc-exp")));
+      infocont.append("div")
+        .classed("ref", true)
+        .html(htmlIfNotEmpty(desc.select(".obj-desc-ref")));
 
       infobox.style("display", "block");
     }
@@ -486,7 +562,8 @@
         ATTR_DESC_SOURCE: "attr_desc.csv",
         LATTICE_SOURCE: "lattice.json",
         POS_SOURCE: "pos.json",
-        ATTR_CLASS_DESC_SOURCE: "attr_class_desc.csv"
+        ATTR_CLASS_DESC_SOURCE: "attr_class_desc.csv",
+        OBJ_DESC_SOURCE: "obj_desc.csv"
       };
       for (key in defaults) {
         if (!config[key]) {
@@ -1167,8 +1244,37 @@
           attrClasses[desc.Attribute] = desc.Class;
         }
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, attrDesc.node()]);
-        d3.json(that.config.POS_SOURCE).then((nodePos) =>
-          d3.json(that.config.LATTICE_SOURCE).then((graph) => latticeJsonLoaded(graph, nodePos)));
+
+        // obj_desc.csv and pos.json are optional: without them objects
+        // simply have no infobox and nodes are placed by hierarchy.
+        Promise.all([
+          d3.dsv("|", that.config.OBJ_DESC_SOURCE).catch(() => []),
+          d3.json(that.config.POS_SOURCE).catch(() => []),
+          d3.json(that.config.LATTICE_SOURCE)
+        ]).then(([objData, nodePos, graph]) => {
+          objDescCsvLoaded(objData, d3.select("#obj-desc"));
+          latticeJsonLoaded(graph, nodePos);
+        });
+      }
+
+      function objDescCsvLoaded(data, objDesc) {
+        for (const desc of data) {
+          const obj_id = getAttrId(desc.Code);
+          const title = desc.Title || desc.Label;
+          const exp = desc.Description ?
+                '<p>' + desc.Description.replaceAll('<br>', '</p><p>') + '</p>' : "";
+          const ref = [desc.Reference, desc.Year].filter((s) => s).join(", ");
+
+          objDesc.append("div")
+            .attr("id", "obj-desc-" + obj_id)
+            .classed("hasinfo", exp !== "" || ref !== "")
+            .html('<span class="obj-desc-title">' + title + '</span>' +
+                  '<span class="obj-desc-exp">' + exp + '</span>' +
+                  '<span class="obj-desc-ref">' + ref + '</span>');
+        }
+        if (!objDesc.empty()) {
+          MathJax.Hub.Queue(["Typeset", MathJax.Hub, objDesc.node()]);
+        }
       }
 
       d3.dsv("|", this.config.ATTR_CLASS_DESC_SOURCE)
@@ -1179,7 +1285,7 @@
 
       function latticeJsonLoaded(graph, nodePos) {
         graph.classes = attrClasses;
-        mergeNodePos(graph.nodes, nodePos);
+        mergeNodePos(graph.nodes, nodePos, viewBox);
 
         if (that.config.USE_EDITOR || that.config.DEV_MODE) {
           editorSetup(editor, d1, legend, graph, viewBox, that.config);
@@ -1282,8 +1388,16 @@
             const textBoxes = [];
             for (let i = 0; i < datum.labelObjects.length; i++) {
               const id = datum.labelObjects[i];
-              const textBox = group.append(() => createTextBox("objects-label",
-                                                               graph.context[id].name));
+              const objDesc = d3.select("#obj-desc-" + getAttrId(id));
+              let eleClass = "objects-label";
+              if (!objDesc.empty() && objDesc.classed("hasinfo")) {
+                eleClass += " hasexp";
+              }
+
+              const textBox = group
+                    .append(() => createTextBox(eleClass, graph.context[id].name))
+                    .on("click", (event) => objectClick(event, infobox))
+                    .property("object", id);
               textBoxes.push(textBox);
             }
             nodeObjectLabelsSetPos(group, that.config);

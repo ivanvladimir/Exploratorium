@@ -38,6 +38,11 @@ SELECT Attribute,Class,Title,Formula,Explanation,Reference FROM v_attributes
       sqlite3 -header "$DBDSN" > "$diagram_dir"/attr_desc.csv
 
     echo "
+SELECT Code,Label,Title,Description,Year,Reference FROM v_objects
+       WHERE Lang='$lang' AND Context='$context'" |
+      sqlite3 -header "$DBDSN" > "$diagram_dir"/obj_desc.csv
+
+    echo "
 SELECT v.Code, v.Title_$lang AS Title
   FROM v_attribute_classes AS v
        NATURAL JOIN

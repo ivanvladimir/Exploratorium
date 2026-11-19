@@ -75,7 +75,8 @@
 	min-height: 180px;
 }
 
-#attr-desc {
+#attr-desc,
+#obj-desc {
 	display: none;
 }
 
@@ -322,7 +323,8 @@ svg.show-levels .node-level {
 	z-index: 200;
 }
 
-.attributes-label.hasexp, .attributes-label.hasexp * {
+.attributes-label.hasexp, .attributes-label.hasexp *,
+.objects-label.hasexp, .objects-label.hasexp * {
 	cursor: pointer;
 }
 

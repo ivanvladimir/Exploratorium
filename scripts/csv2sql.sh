@@ -99,6 +99,15 @@ function str_or_NULL {
     fi
 }
 
+function int_or_NULL {
+    if [[ "$1" =~ ^[0-9]+$ ]]; then
+	echo -n "$1"
+    else
+	[ -n "$1" ] && echo "$0: ignoring non-numeric year '$1' for $2" >&2
+	echo -n NULL
+    fi
+}
+
 function render_attr_class {
     local reader=$1
     local table=$2
@@ -192,8 +201,9 @@ function render_object {
     local table=$2
 
     eval "$reader" || return 1
-    printf "INSERT INTO %s VALUES(%d,%s);\n" \
-	   "$table" "$object_id" "$(esc "$object_code")"
+    printf "INSERT INTO %s VALUES(%d,%s,%s,%s);\n" \
+	   "$table" "$object_id" "$(esc "$object_code")" \
+	   "$(str_or_NULL "$reference")" "$(int_or_NULL "$year" "$object_code")"
 }
 
 function render_object_attribute {
@@ -219,10 +229,12 @@ function render_object_desc {
     local table=$2
 
     eval "$reader" || return 1
-    printf "INSERT INTO %s VALUES(%d,'en',%s);\n" \
-	   "$table" "$object_id" "$(esc "$object_label_en")"
-    printf "INSERT INTO %s VALUES(%d,'es',%s);\n" \
-	   "$table" "$object_id" "$(esc "$object_label_es")"
+    printf "INSERT INTO %s VALUES(%d,'en',%s,%s,%s);\n" \
+	   "$table" "$object_id" "$(esc "$object_label_en")" \
+	   "$(str_or_NULL "$object_title_en")" "$(str_or_NULL "$object_desc_en")"
+    printf "INSERT INTO %s VALUES(%d,'es',%s,%s,%s);\n" \
+	   "$table" "$object_id" "$(esc "$object_label_es")" \
+	   "$(str_or_NULL "$object_title_es")" "$(str_or_NULL "$object_desc_es")"
 }
 
 (
