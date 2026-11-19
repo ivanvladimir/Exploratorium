@@ -10,11 +10,15 @@ if [ -z "$INDIR" ]; then
     exit 1
 fi
 
+# Build a "read" command whose variables are the header's column names.
+# Columns without a name (e.g. spacer columns in the spreadsheet) are
+# read into a throwaway variable, so they don't shift the columns that
+# follow them.
 function get_reader {
     local header
     IFS= read -r header
     echo -n 'IFS=\| read -r '
-    tr \| ' ' <<<$header
+    awk -F'|' '{ for (i = 1; i <= NF; i++) printf "%s ", ($i == "" ? "_" : $i) }' <<<"$header"
 }
 
 function cat2sql {
@@ -77,11 +81,14 @@ function contexts2cat {
 	done
 }
 
+# Quote a value as an SQL string literal. SQL (and SQLite) only
+# escapes a single quote by doubling it; backslashes and double quotes
+# are literal and must be left alone, or TeX formulas would end up
+# with doubled backslashes.
 function esc {
     local s=$1
-    s=${s//\\/\\\\}
-    s=${s//\'/\\\'}
-    printf "'%s'" "${s//\"/\\\"}"
+    local q="'"
+    printf "'%s'" "${s//$q/$q$q}"
 }
 
 function str_or_NULL {
