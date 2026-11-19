@@ -108,10 +108,9 @@ flowchart TD
             LPJ[/"Node Positions JSON<br/><i>site/theories/{en,es}/*/pos.json</i>"/]
         end
         subgraph LIB[Javascript Libraries]
-            D3[\d3<br/><i>site/lib/d3/]
-            MJ[\MathJax<br/><i>site/lib/MathJax/]
-            JQ[\jQuery<br/><i>site/lib/jQuery/]
-            BS[\Bootstrap<br/><i>site/lib/bootstrap/]
+            D3[\d3 v7<br/><i>jsDelivr CDN]
+            MJ[\MathJax 2.7<br/><i>jsDelivr CDN]
+            BS[\Bootstrap 5<br/><i>jsDelivr CDN]
         end
         subgraph RES[Resources]
             HTML[/HTML docs<br/><i>site/*.html/]

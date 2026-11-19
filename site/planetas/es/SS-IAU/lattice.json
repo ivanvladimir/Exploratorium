@@ -156,11 +156,8 @@
          "attributes" : [
             "Alrededor del Sol"
          ],
-         "desc" : null,
          "id" : "Ceres",
-         "name" : "Ceres",
-         "reference" : null,
-         "year" : null
+         "name" : "Ceres"
       },
       "Earth" : {
          "attributes" : [
@@ -169,11 +166,8 @@
             "Limpia",
             "Satelites"
          ],
-         "desc" : null,
          "id" : "Earth",
-         "name" : "Tierra",
-         "reference" : null,
-         "year" : null
+         "name" : "Tierra"
       },
       "Jup" : {
          "attributes" : [
@@ -182,11 +176,8 @@
             "Limpia",
             "Satelites"
          ],
-         "desc" : null,
          "id" : "Jup",
-         "name" : "Júpiter",
-         "reference" : null,
-         "year" : null
+         "name" : "Júpiter"
       },
       "Kepler" : {
          "attributes" : [
@@ -194,11 +185,8 @@
             "Esferico",
             "Limpia"
          ],
-         "desc" : null,
          "id" : "Kepler",
-         "name" : "Kepler-186f",
-         "reference" : null,
-         "year" : null
+         "name" : "Kepler-186f"
       },
       "Mars" : {
          "attributes" : [
@@ -207,11 +195,8 @@
             "Limpia",
             "Satelites"
          ],
-         "desc" : null,
          "id" : "Mars",
-         "name" : "Marte",
-         "reference" : null,
-         "year" : null
+         "name" : "Marte"
       },
       "Mer" : {
          "attributes" : [
@@ -219,11 +204,8 @@
             "Esferico",
             "Limpia"
          ],
-         "desc" : null,
          "id" : "Mer",
-         "name" : "Mercurio",
-         "reference" : null,
-         "year" : null
+         "name" : "Mercurio"
       },
       "Nep" : {
          "attributes" : [
@@ -232,11 +214,8 @@
             "Limpia",
             "Satelites"
          ],
-         "desc" : null,
          "id" : "Nep",
-         "name" : "Neptuno",
-         "reference" : null,
-         "year" : null
+         "name" : "Neptuno"
       },
       "Planet" : {
          "attributes" : [
@@ -244,22 +223,16 @@
             "Esferico",
             "Limpia"
          ],
-         "desc" : null,
          "id" : "Planet",
-         "name" : "Planeta",
-         "reference" : null,
-         "year" : null
+         "name" : "Planeta"
       },
       "Pluto" : {
          "attributes" : [
             "Alrededor del Sol",
             "Satelites"
          ],
-         "desc" : null,
          "id" : "Pluto",
-         "name" : "Pluton",
-         "reference" : null,
-         "year" : null
+         "name" : "Pluton"
       },
       "Sat" : {
          "attributes" : [
@@ -268,11 +241,8 @@
             "Limpia",
             "Satelites"
          ],
-         "desc" : null,
          "id" : "Sat",
-         "name" : "Saturno",
-         "reference" : null,
-         "year" : null
+         "name" : "Saturno"
       },
       "Sun" : {
          "attributes" : [
@@ -282,11 +252,8 @@
             "Limpia",
             "Satelites"
          ],
-         "desc" : null,
          "id" : "Sun",
-         "name" : "Sol",
-         "reference" : null,
-         "year" : null
+         "name" : "Sol"
       },
       "Uran" : {
          "attributes" : [
@@ -295,11 +262,8 @@
             "Limpia",
             "Satelites"
          ],
-         "desc" : null,
          "id" : "Uran",
-         "name" : "Urano",
-         "reference" : null,
-         "year" : null
+         "name" : "Urano"
       },
       "Ven" : {
          "attributes" : [
@@ -307,11 +271,8 @@
             "Esferico",
             "Limpia"
          ],
-         "desc" : null,
          "id" : "Ven",
-         "name" : "Venus",
-         "reference" : null,
-         "year" : null
+         "name" : "Venus"
       }
    },
    "links" : [
@@ -363,8 +324,8 @@
    "nodes" : [
       {
          "children" : [
-            "184239573",
-            "397881829"
+            "629219582",
+            "1722197753"
          ],
          "concept" : {
             "extent" : [
@@ -385,7 +346,7 @@
             "intent" : [],
             "md5" : "41a1645bdb91ce7261ee96374eb2d538"
          },
-         "hash" : "1820836128",
+         "hash" : "1722472381",
          "idx" : 0,
          "labelAttributes" : [],
          "labelObjects" : [],
@@ -406,20 +367,20 @@
             ],
             "md5" : "3c662a6d02ea30c65050f4b78552cd1e"
          },
-         "hash" : "741693601",
+         "hash" : "374234338",
          "idx" : 1,
          "labelAttributes" : [],
          "labelObjects" : [],
          "level" : "0",
          "parents" : [
-            "855848536",
-            "898725418"
+            "1151850448",
+            "1137054580"
          ]
       },
       {
          "children" : [
-            "85757049",
-            "898725418"
+            "444738435",
+            "1137054580"
          ],
          "concept" : {
             "extent" : [
@@ -441,7 +402,7 @@
             ],
             "md5" : "f62d9945b6aa089e49ae8fe123bca5db"
          },
-         "hash" : "184239573",
+         "hash" : "629219582",
          "idx" : 2,
          "labelAttributes" : [
             "Limpia",
@@ -450,12 +411,12 @@
          "labelObjects" : [],
          "level" : "4",
          "parents" : [
-            "1820836128"
+            "1722472381"
          ]
       },
       {
          "children" : [
-            "1987138458"
+            "928289208"
          ],
          "concept" : {
             "extent" : [
@@ -477,7 +438,7 @@
             ],
             "md5" : "4eb3e61703844b3361c710bd99d410f6"
          },
-         "hash" : "85757049",
+         "hash" : "444738435",
          "idx" : 3,
          "labelAttributes" : [],
          "labelObjects" : [
@@ -487,13 +448,13 @@
          ],
          "level" : "3",
          "parents" : [
-            "184239573",
-            "397881829"
+            "629219582",
+            "1722197753"
          ]
       },
       {
          "children" : [
-            "855848536"
+            "1151850448"
          ],
          "concept" : {
             "extent" : [
@@ -513,7 +474,7 @@
             ],
             "md5" : "bd69de27b4efe86fa6b948c692ac98cf"
          },
-         "hash" : "1987138458",
+         "hash" : "928289208",
          "idx" : 4,
          "labelAttributes" : [],
          "labelObjects" : [
@@ -526,13 +487,13 @@
          ],
          "level" : "2",
          "parents" : [
-            "85757049",
-            "739511849"
+            "444738435",
+            "392690467"
          ]
       },
       {
          "children" : [
-            "741693601"
+            "374234338"
          ],
          "concept" : {
             "extent" : [
@@ -547,7 +508,7 @@
             ],
             "md5" : "ade218cf5cff40ad41474f095bab264a"
          },
-         "hash" : "855848536",
+         "hash" : "1151850448",
          "idx" : 5,
          "labelAttributes" : [
             "Fusion"
@@ -557,12 +518,12 @@
          ],
          "level" : "1",
          "parents" : [
-            "1987138458"
+            "928289208"
          ]
       },
       {
          "children" : [
-            "741693601"
+            "374234338"
          ],
          "concept" : {
             "extent" : [
@@ -575,7 +536,7 @@
             ],
             "md5" : "c73e69feb55bebb10368cfd07f27e959"
          },
-         "hash" : "898725418",
+         "hash" : "1137054580",
          "idx" : 6,
          "labelAttributes" : [
             "Alrededor de una estrella"
@@ -585,13 +546,13 @@
          ],
          "level" : "1",
          "parents" : [
-            "184239573"
+            "629219582"
          ]
       },
       {
          "children" : [
-            "739511849",
-            "85757049"
+            "392690467",
+            "444738435"
          ],
          "concept" : {
             "extent" : [
@@ -613,7 +574,7 @@
             ],
             "md5" : "fa7fcc6aa3557b31bdfea3eac797e4cb"
          },
-         "hash" : "397881829",
+         "hash" : "1722197753",
          "idx" : 7,
          "labelAttributes" : [
             "Alrededor del Sol"
@@ -623,12 +584,12 @@
          ],
          "level" : "4",
          "parents" : [
-            "1820836128"
+            "1722472381"
          ]
       },
       {
          "children" : [
-            "1987138458"
+            "928289208"
          ],
          "concept" : {
             "extent" : [
@@ -647,7 +608,7 @@
             ],
             "md5" : "609c8718c43d638f8d404bea3d0c2610"
          },
-         "hash" : "739511849",
+         "hash" : "392690467",
          "idx" : 8,
          "labelAttributes" : [
             "Satelites"
@@ -657,7 +618,7 @@
          ],
          "level" : "3",
          "parents" : [
-            "397881829"
+            "1722197753"
          ]
       }
    ]

@@ -177,6 +177,10 @@ CREATE TABLE object (
 	code TEXT
 		UNIQUE NOT NULL
 		COLLATE NOCASE,
+	reference TEXT
+		DEFAULT NULL CHECK (reference IS NULL OR trim(reference) <> ''),
+	year INTEGER
+		DEFAULT NULL CHECK (year IS NULL OR year BETWEEN 0 AND 9999),
 	CHECK (code <> ''))
 STRICT;
 
@@ -243,6 +247,10 @@ CREATE TABLE object_desc (
 	label TEXT
 		NOT NULL
 		COLLATE NOCASE,
+	title TEXT
+		DEFAULT NULL CHECK (title IS NULL OR trim(title) <> ''),
+	description TEXT
+		DEFAULT NULL CHECK (description IS NULL OR trim(description) <> ''),
 	PRIMARY KEY (object_id, lang_code),
 	UNIQUE (lang_code, label),
 	CHECK (label <> ''))
@@ -446,6 +454,31 @@ FROM
 ORDER BY
 	Lang,
 	Context
+;
+
+
+-- View: v_objects
+DROP VIEW IF EXISTS v_objects;
+
+CREATE VIEW v_objects AS
+SELECT
+	od.lang_code AS Lang,
+	d.code AS Context,
+	o.code AS Code,
+	od.label AS Label,
+	od.title AS Title,
+	od.description AS Description,
+	o.year AS Year,
+	o.reference AS Reference
+FROM
+	object AS o
+	NATURAL JOIN object_context
+	NATURAL JOIN object_desc AS od
+	JOIN context AS d USING (context_id)
+ORDER BY
+	Lang,
+	Context,
+	Label
 ;
 
 

@@ -9,9 +9,13 @@ DBDSN=${1:-$DEFAULT_DBDSN}
 require_sqlite "$DBDSN"
 
 if ! sqlite3 "$DBDSN" "SELECT 1 FROM sqlite_schema WHERE type = 'view' AND name = 'v_objects'" | grep -qx 1; then
-  echo "$0: database '$DBDSN' does not include view 'v_objects'; regenerate the database with scripts/ods2db.sh before building" >&2
+  echo "$0: database '$DBDSN' does not include view 'v_objects'; rebuild it from db/ddl.sql and db/data.sql with scripts/init.sh" >&2
   exit 1
 fi
+
+# Must run before the defaults below, or the committed pos.json and
+# config.js files would be shadowed by freshly written defaults.
+ensure_static_files
 
 while read -r lang; do
   while IFS=\| read -r context_id context; do
@@ -41,7 +45,7 @@ SELECT Attribute,Class,Title,Formula,Explanation,Reference FROM v_attributes
       sqlite3 -header "$DBDSN" > "$diagram_dir"/attr_desc.csv
 
     echo "
-SELECT Code,Label,Description,Year,Reference FROM v_objects
+SELECT Code,Label,Title,Description,Year,Reference FROM v_objects
        WHERE Lang='$lang' AND Context='$context'" |
       sqlite3 -header "$DBDSN" > "$diagram_dir"/obj_desc.csv
 

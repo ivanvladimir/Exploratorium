@@ -149,11 +149,8 @@
             "Chico",
             "Satelites"
          ],
-         "desc" : null,
          "id" : "Earth",
-         "name" : "Tierra",
-         "reference" : null,
-         "year" : null
+         "name" : "Tierra"
       },
       "Jup" : {
          "attributes" : [
@@ -161,11 +158,8 @@
             "Lejos",
             "Satelites"
          ],
-         "desc" : null,
          "id" : "Jup",
-         "name" : "Júpiter",
-         "reference" : null,
-         "year" : null
+         "name" : "Júpiter"
       },
       "Mars" : {
          "attributes" : [
@@ -173,22 +167,16 @@
             "Chico",
             "Satelites"
          ],
-         "desc" : null,
          "id" : "Mars",
-         "name" : "Marte",
-         "reference" : null,
-         "year" : null
+         "name" : "Marte"
       },
       "Mer" : {
          "attributes" : [
             "Cerca",
             "Chico"
          ],
-         "desc" : null,
          "id" : "Mer",
-         "name" : "Mercurio",
-         "reference" : null,
-         "year" : null
+         "name" : "Mercurio"
       },
       "Nep" : {
          "attributes" : [
@@ -196,11 +184,8 @@
             "Mediano",
             "Satelites"
          ],
-         "desc" : null,
          "id" : "Nep",
-         "name" : "Neptuno",
-         "reference" : null,
-         "year" : null
+         "name" : "Neptuno"
       },
       "Pluto" : {
          "attributes" : [
@@ -208,11 +193,8 @@
             "Lejos",
             "Satelites"
          ],
-         "desc" : null,
          "id" : "Pluto",
-         "name" : "Pluton",
-         "reference" : null,
-         "year" : null
+         "name" : "Pluton"
       },
       "Sat" : {
          "attributes" : [
@@ -220,11 +202,8 @@
             "Lejos",
             "Satelites"
          ],
-         "desc" : null,
          "id" : "Sat",
-         "name" : "Saturno",
-         "reference" : null,
-         "year" : null
+         "name" : "Saturno"
       },
       "Uran" : {
          "attributes" : [
@@ -232,22 +211,16 @@
             "Mediano",
             "Satelites"
          ],
-         "desc" : null,
          "id" : "Uran",
-         "name" : "Urano",
-         "reference" : null,
-         "year" : null
+         "name" : "Urano"
       },
       "Ven" : {
          "attributes" : [
             "Cerca",
             "Chico"
          ],
-         "desc" : null,
          "id" : "Ven",
-         "name" : "Venus",
-         "reference" : null,
-         "year" : null
+         "name" : "Venus"
       }
    },
    "links" : [
@@ -319,8 +292,8 @@
    "nodes" : [
       {
          "children" : [
-            "1046928504",
-            "686642036"
+            "1880518225",
+            "465795553"
          ],
          "concept" : {
             "extent" : [
@@ -337,7 +310,7 @@
             "intent" : [],
             "md5" : "296dc9956bef436006002e0341f2d11d"
          },
-         "hash" : "1559099592",
+         "hash" : "668422949",
          "idx" : 0,
          "labelAttributes" : [],
          "labelObjects" : [],
@@ -358,22 +331,22 @@
             ],
             "md5" : "9a1d445503b38557032616c369239bef"
          },
-         "hash" : "805749328",
+         "hash" : "1137054580",
          "idx" : 1,
          "labelAttributes" : [],
          "labelObjects" : [],
          "level" : "0",
          "parents" : [
-            "184239573",
-            "397881829",
-            "1820836128",
-            "1619256952"
+            "884369930",
+            "9091828",
+            "1252576525",
+            "1151850448"
          ]
       },
       {
          "children" : [
-            "504427948",
-            "1280092559"
+            "374234338",
+            "444738435"
          ],
          "concept" : {
             "extent" : [
@@ -390,7 +363,7 @@
             ],
             "md5" : "5539b4c1fe740254f0a3159ec422d4a5"
          },
-         "hash" : "1046928504",
+         "hash" : "1880518225",
          "idx" : 2,
          "labelAttributes" : [
             "Satelites"
@@ -398,14 +371,14 @@
          "labelObjects" : [],
          "level" : "3",
          "parents" : [
-            "1559099592"
+            "668422949"
          ]
       },
       {
          "children" : [
-            "184239573",
-            "397881829",
-            "1820836128"
+            "884369930",
+            "9091828",
+            "1252576525"
          ],
          "concept" : {
             "extent" : [
@@ -421,7 +394,7 @@
             ],
             "md5" : "8813b223d55288a3062d6bc66bf5fa30"
          },
-         "hash" : "504427948",
+         "hash" : "374234338",
          "idx" : 3,
          "labelAttributes" : [
             "Lejos"
@@ -429,12 +402,12 @@
          "labelObjects" : [],
          "level" : "2",
          "parents" : [
-            "1046928504"
+            "1880518225"
          ]
       },
       {
          "children" : [
-            "805749328"
+            "1137054580"
          ],
          "concept" : {
             "extent" : [
@@ -448,7 +421,7 @@
             ],
             "md5" : "4e7e8b465d00acc652b6f0a80ab97625"
          },
-         "hash" : "184239573",
+         "hash" : "884369930",
          "idx" : 4,
          "labelAttributes" : [
             "Mediano"
@@ -459,12 +432,12 @@
          ],
          "level" : "1",
          "parents" : [
-            "504427948"
+            "374234338"
          ]
       },
       {
          "children" : [
-            "805749328"
+            "1137054580"
          ],
          "concept" : {
             "extent" : [
@@ -478,7 +451,7 @@
             ],
             "md5" : "6db106934fb067ea053d8ebf48d6bb24"
          },
-         "hash" : "397881829",
+         "hash" : "9091828",
          "idx" : 5,
          "labelAttributes" : [
             "Grande"
@@ -489,12 +462,12 @@
          ],
          "level" : "1",
          "parents" : [
-            "504427948"
+            "374234338"
          ]
       },
       {
          "children" : [
-            "805749328"
+            "1137054580"
          ],
          "concept" : {
             "extent" : [
@@ -507,7 +480,7 @@
             ],
             "md5" : "d45d917d1a6cf7974a20150445bda498"
          },
-         "hash" : "1820836128",
+         "hash" : "1252576525",
          "idx" : 6,
          "labelAttributes" : [],
          "labelObjects" : [
@@ -515,14 +488,14 @@
          ],
          "level" : "1",
          "parents" : [
-            "504427948",
-            "1280092559"
+            "374234338",
+            "444738435"
          ]
       },
       {
          "children" : [
-            "1820836128",
-            "1619256952"
+            "1252576525",
+            "1151850448"
          ],
          "concept" : {
             "extent" : [
@@ -536,19 +509,19 @@
             ],
             "md5" : "405aa6964821da650d6e1461da253098"
          },
-         "hash" : "1280092559",
+         "hash" : "444738435",
          "idx" : 7,
          "labelAttributes" : [],
          "labelObjects" : [],
          "level" : "2",
          "parents" : [
-            "1046928504",
-            "686642036"
+            "1880518225",
+            "465795553"
          ]
       },
       {
          "children" : [
-            "805749328"
+            "1137054580"
          ],
          "concept" : {
             "extent" : [
@@ -562,7 +535,7 @@
             ],
             "md5" : "334822098927f3ac5b455532395cbf84"
          },
-         "hash" : "1619256952",
+         "hash" : "1151850448",
          "idx" : 8,
          "labelAttributes" : [],
          "labelObjects" : [
@@ -571,14 +544,14 @@
          ],
          "level" : "1",
          "parents" : [
-            "1280092559",
-            "314084287"
+            "444738435",
+            "928289208"
          ]
       },
       {
          "children" : [
-            "1280092559",
-            "314084287"
+            "444738435",
+            "928289208"
          ],
          "concept" : {
             "extent" : [
@@ -593,7 +566,7 @@
             ],
             "md5" : "79ba2d33704c0cff7aed5b542561bd59"
          },
-         "hash" : "686642036",
+         "hash" : "465795553",
          "idx" : 9,
          "labelAttributes" : [
             "Chico"
@@ -601,12 +574,12 @@
          "labelObjects" : [],
          "level" : "3",
          "parents" : [
-            "1559099592"
+            "668422949"
          ]
       },
       {
          "children" : [
-            "1619256952"
+            "1151850448"
          ],
          "concept" : {
             "extent" : [
@@ -621,7 +594,7 @@
             ],
             "md5" : "cdf5125028a27a476917b8bce3323c13"
          },
-         "hash" : "314084287",
+         "hash" : "928289208",
          "idx" : 10,
          "labelAttributes" : [
             "Cerca"
@@ -632,7 +605,7 @@
          ],
          "level" : "2",
          "parents" : [
-            "686642036"
+            "465795553"
          ]
       }
    ]

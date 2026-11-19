@@ -3,7 +3,8 @@
                           "https://cdn.jsdelivr.net/npm/d3@7"
                           "https://cdn.jsdelivr.net/npm/d3-drag@3"
                           "https://cdn.jsdelivr.net/npm/d3-zoom@3"
-                          "${page.basedir}lib/MathJax/MathJax.js?config=default"
+                          "${page.basedir}lib/mathjax-config.js"
+                          "https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js"
                           "${page.basedir}lib/reticulo.js"
                           "config.js"
                         ]

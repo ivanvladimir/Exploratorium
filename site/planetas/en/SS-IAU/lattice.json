@@ -156,11 +156,8 @@
          "attributes" : [
             "Around the sun"
          ],
-         "desc" : null,
          "id" : "Ceres",
-         "name" : "Ceres",
-         "reference" : null,
-         "year" : null
+         "name" : "Ceres"
       },
       "Earth" : {
          "attributes" : [
@@ -169,11 +166,8 @@
             "Has satellites",
             "Spherical"
          ],
-         "desc" : null,
          "id" : "Earth",
-         "name" : "Earth",
-         "reference" : null,
-         "year" : null
+         "name" : "Earth"
       },
       "Jup" : {
          "attributes" : [
@@ -182,11 +176,8 @@
             "Has satellites",
             "Spherical"
          ],
-         "desc" : null,
          "id" : "Jup",
-         "name" : "Jupiter",
-         "reference" : null,
-         "year" : null
+         "name" : "Jupiter"
       },
       "Kepler" : {
          "attributes" : [
@@ -194,11 +185,8 @@
             "Clean",
             "Spherical"
          ],
-         "desc" : null,
          "id" : "Kepler",
-         "name" : "Kepler-186f",
-         "reference" : null,
-         "year" : null
+         "name" : "Kepler-186f"
       },
       "Mars" : {
          "attributes" : [
@@ -207,11 +195,8 @@
             "Has satellites",
             "Spherical"
          ],
-         "desc" : null,
          "id" : "Mars",
-         "name" : "Mars",
-         "reference" : null,
-         "year" : null
+         "name" : "Mars"
       },
       "Mer" : {
          "attributes" : [
@@ -219,11 +204,8 @@
             "Clean",
             "Spherical"
          ],
-         "desc" : null,
          "id" : "Mer",
-         "name" : "Mercury",
-         "reference" : null,
-         "year" : null
+         "name" : "Mercury"
       },
       "Nep" : {
          "attributes" : [
@@ -232,11 +214,8 @@
             "Has satellites",
             "Spherical"
          ],
-         "desc" : null,
          "id" : "Nep",
-         "name" : "Neptune",
-         "reference" : null,
-         "year" : null
+         "name" : "Neptune"
       },
       "Planet" : {
          "attributes" : [
@@ -244,22 +223,16 @@
             "Clean",
             "Spherical"
          ],
-         "desc" : null,
          "id" : "Planet",
-         "name" : "Planet",
-         "reference" : null,
-         "year" : null
+         "name" : "Planet"
       },
       "Pluto" : {
          "attributes" : [
             "Around the sun",
             "Has satellites"
          ],
-         "desc" : null,
          "id" : "Pluto",
-         "name" : "Pluto",
-         "reference" : null,
-         "year" : null
+         "name" : "Pluto"
       },
       "Sat" : {
          "attributes" : [
@@ -268,11 +241,8 @@
             "Has satellites",
             "Spherical"
          ],
-         "desc" : null,
          "id" : "Sat",
-         "name" : "Saturn",
-         "reference" : null,
-         "year" : null
+         "name" : "Saturn"
       },
       "Sun" : {
          "attributes" : [
@@ -282,11 +252,8 @@
             "Has satellites",
             "Spherical"
          ],
-         "desc" : null,
          "id" : "Sun",
-         "name" : "Sun",
-         "reference" : null,
-         "year" : null
+         "name" : "Sun"
       },
       "Uran" : {
          "attributes" : [
@@ -295,11 +262,8 @@
             "Has satellites",
             "Spherical"
          ],
-         "desc" : null,
          "id" : "Uran",
-         "name" : "Uranus",
-         "reference" : null,
-         "year" : null
+         "name" : "Uranus"
       },
       "Ven" : {
          "attributes" : [
@@ -307,11 +271,8 @@
             "Clean",
             "Spherical"
          ],
-         "desc" : null,
          "id" : "Ven",
-         "name" : "Venus",
-         "reference" : null,
-         "year" : null
+         "name" : "Venus"
       }
    },
    "links" : [
@@ -363,8 +324,8 @@
    "nodes" : [
       {
          "children" : [
-            "951674894",
-            "1318962126"
+            "629219582",
+            "1722197753"
          ],
          "concept" : {
             "extent" : [
@@ -385,7 +346,7 @@
             "intent" : [],
             "md5" : "991b7b9501e2256e5d10ad07d9ed6a6b"
          },
-         "hash" : "1616005014",
+         "hash" : "1722472381",
          "idx" : 0,
          "labelAttributes" : [],
          "labelObjects" : [],
@@ -406,20 +367,20 @@
             ],
             "md5" : "d283c81b55d453ca423bf9649ff5b0df"
          },
-         "hash" : "501793317",
+         "hash" : "374234338",
          "idx" : 1,
          "labelAttributes" : [],
          "labelObjects" : [],
          "level" : "0",
          "parents" : [
-            "605794870",
-            "477774708"
+            "1151850448",
+            "1137054580"
          ]
       },
       {
          "children" : [
-            "175214140",
-            "477774708"
+            "444738435",
+            "1137054580"
          ],
          "concept" : {
             "extent" : [
@@ -441,7 +402,7 @@
             ],
             "md5" : "4a5ee2c39f32e368debdc1bc048c78fc"
          },
-         "hash" : "951674894",
+         "hash" : "629219582",
          "idx" : 2,
          "labelAttributes" : [
             "Spherical",
@@ -450,12 +411,12 @@
          "labelObjects" : [],
          "level" : "4",
          "parents" : [
-            "1616005014"
+            "1722472381"
          ]
       },
       {
          "children" : [
-            "1619656008"
+            "928289208"
          ],
          "concept" : {
             "extent" : [
@@ -477,7 +438,7 @@
             ],
             "md5" : "00f139141059115a653dd7c53e3e9081"
          },
-         "hash" : "175214140",
+         "hash" : "444738435",
          "idx" : 3,
          "labelAttributes" : [],
          "labelObjects" : [
@@ -487,13 +448,13 @@
          ],
          "level" : "3",
          "parents" : [
-            "951674894",
-            "1318962126"
+            "629219582",
+            "1722197753"
          ]
       },
       {
          "children" : [
-            "605794870"
+            "1151850448"
          ],
          "concept" : {
             "extent" : [
@@ -513,7 +474,7 @@
             ],
             "md5" : "6d9f212df81d6645da30a7faa1aa76b4"
          },
-         "hash" : "1619656008",
+         "hash" : "928289208",
          "idx" : 4,
          "labelAttributes" : [],
          "labelObjects" : [
@@ -526,13 +487,13 @@
          ],
          "level" : "2",
          "parents" : [
-            "175214140",
-            "2011654056"
+            "444738435",
+            "392690467"
          ]
       },
       {
          "children" : [
-            "501793317"
+            "374234338"
          ],
          "concept" : {
             "extent" : [
@@ -547,7 +508,7 @@
             ],
             "md5" : "b445591b2cca573f4f5892ebf84200a8"
          },
-         "hash" : "605794870",
+         "hash" : "1151850448",
          "idx" : 5,
          "labelAttributes" : [
             "Fusion"
@@ -557,12 +518,12 @@
          ],
          "level" : "1",
          "parents" : [
-            "1619656008"
+            "928289208"
          ]
       },
       {
          "children" : [
-            "501793317"
+            "374234338"
          ],
          "concept" : {
             "extent" : [
@@ -575,7 +536,7 @@
             ],
             "md5" : "f831b07f67ccb767126c02dc684978e2"
          },
-         "hash" : "477774708",
+         "hash" : "1137054580",
          "idx" : 6,
          "labelAttributes" : [
             "Around a star"
@@ -585,13 +546,13 @@
          ],
          "level" : "1",
          "parents" : [
-            "951674894"
+            "629219582"
          ]
       },
       {
          "children" : [
-            "175214140",
-            "2011654056"
+            "444738435",
+            "392690467"
          ],
          "concept" : {
             "extent" : [
@@ -613,7 +574,7 @@
             ],
             "md5" : "bfe10386ea4a370e74a6816cff73e70e"
          },
-         "hash" : "1318962126",
+         "hash" : "1722197753",
          "idx" : 7,
          "labelAttributes" : [
             "Around the sun"
@@ -623,12 +584,12 @@
          ],
          "level" : "4",
          "parents" : [
-            "1616005014"
+            "1722472381"
          ]
       },
       {
          "children" : [
-            "1619656008"
+            "928289208"
          ],
          "concept" : {
             "extent" : [
@@ -647,7 +608,7 @@
             ],
             "md5" : "bb16267d9a0f08697aea8572ed5ec94c"
          },
-         "hash" : "2011654056",
+         "hash" : "392690467",
          "idx" : 8,
          "labelAttributes" : [
             "Has satellites"
@@ -657,7 +618,7 @@
          ],
          "level" : "3",
          "parents" : [
-            "1318962126"
+            "1722197753"
          ]
       }
    ]

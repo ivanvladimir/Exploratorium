@@ -149,11 +149,8 @@
             "Near",
             "Small"
          ],
-         "desc" : null,
          "id" : "Earth",
-         "name" : "Earth",
-         "reference" : null,
-         "year" : null
+         "name" : "Earth"
       },
       "Jup" : {
          "attributes" : [
@@ -161,11 +158,8 @@
             "Far",
             "Has satellites"
          ],
-         "desc" : null,
          "id" : "Jup",
-         "name" : "Jupiter",
-         "reference" : null,
-         "year" : null
+         "name" : "Jupiter"
       },
       "Mars" : {
          "attributes" : [
@@ -173,22 +167,16 @@
             "Near",
             "Small"
          ],
-         "desc" : null,
          "id" : "Mars",
-         "name" : "Mars",
-         "reference" : null,
-         "year" : null
+         "name" : "Mars"
       },
       "Mer" : {
          "attributes" : [
             "Near",
             "Small"
          ],
-         "desc" : null,
          "id" : "Mer",
-         "name" : "Mercury",
-         "reference" : null,
-         "year" : null
+         "name" : "Mercury"
       },
       "Nep" : {
          "attributes" : [
@@ -196,11 +184,8 @@
             "Has satellites",
             "Medium"
          ],
-         "desc" : null,
          "id" : "Nep",
-         "name" : "Neptune",
-         "reference" : null,
-         "year" : null
+         "name" : "Neptune"
       },
       "Pluto" : {
          "attributes" : [
@@ -208,11 +193,8 @@
             "Has satellites",
             "Small"
          ],
-         "desc" : null,
          "id" : "Pluto",
-         "name" : "Pluto",
-         "reference" : null,
-         "year" : null
+         "name" : "Pluto"
       },
       "Sat" : {
          "attributes" : [
@@ -220,11 +202,8 @@
             "Far",
             "Has satellites"
          ],
-         "desc" : null,
          "id" : "Sat",
-         "name" : "Saturn",
-         "reference" : null,
-         "year" : null
+         "name" : "Saturn"
       },
       "Uran" : {
          "attributes" : [
@@ -232,22 +211,16 @@
             "Has satellites",
             "Medium"
          ],
-         "desc" : null,
          "id" : "Uran",
-         "name" : "Uranus",
-         "reference" : null,
-         "year" : null
+         "name" : "Uranus"
       },
       "Ven" : {
          "attributes" : [
             "Near",
             "Small"
          ],
-         "desc" : null,
          "id" : "Ven",
-         "name" : "Venus",
-         "reference" : null,
-         "year" : null
+         "name" : "Venus"
       }
    },
    "links" : [
@@ -319,8 +292,8 @@
    "nodes" : [
       {
          "children" : [
-            "1046928504",
-            "686642036"
+            "1923267121",
+            "527278735"
          ],
          "concept" : {
             "extent" : [
@@ -337,7 +310,7 @@
             "intent" : [],
             "md5" : "5f0749ec42bf2265e6792520560f360b"
          },
-         "hash" : "1559099592",
+         "hash" : "999670019",
          "idx" : 0,
          "labelAttributes" : [],
          "labelObjects" : [],
@@ -358,22 +331,22 @@
             ],
             "md5" : "439f6c4c095ebbb5ac7228b888ff3ecc"
          },
-         "hash" : "805749328",
+         "hash" : "561404508",
          "idx" : 1,
          "labelAttributes" : [],
          "labelObjects" : [],
          "level" : "0",
          "parents" : [
-            "184239573",
-            "397881829",
-            "1820836128",
-            "1619256952"
+            "1258228578",
+            "69107047",
+            "1741567593",
+            "333506393"
          ]
       },
       {
          "children" : [
-            "504427948",
-            "1280092559"
+            "1458892368",
+            "1075832729"
          ],
          "concept" : {
             "extent" : [
@@ -388,7 +361,7 @@
             ],
             "md5" : "ed8ae15d1df9479325827d31942fd148"
          },
-         "hash" : "1046928504",
+         "hash" : "1923267121",
          "idx" : 2,
          "labelAttributes" : [
             "Small"
@@ -396,12 +369,12 @@
          "labelObjects" : [],
          "level" : "3",
          "parents" : [
-            "1559099592"
+            "999670019"
          ]
       },
       {
          "children" : [
-            "184239573"
+            "1258228578"
          ],
          "concept" : {
             "extent" : [
@@ -416,7 +389,7 @@
             ],
             "md5" : "bb13783c6a2bdaaa9c7d69e55e61b630"
          },
-         "hash" : "504427948",
+         "hash" : "1458892368",
          "idx" : 3,
          "labelAttributes" : [
             "Near"
@@ -427,12 +400,12 @@
          ],
          "level" : "2",
          "parents" : [
-            "1046928504"
+            "1923267121"
          ]
       },
       {
          "children" : [
-            "805749328"
+            "561404508"
          ],
          "concept" : {
             "extent" : [
@@ -446,7 +419,7 @@
             ],
             "md5" : "b1d5ce86c33a8d3d1864e3aa74fb9184"
          },
-         "hash" : "184239573",
+         "hash" : "1258228578",
          "idx" : 4,
          "labelAttributes" : [],
          "labelObjects" : [
@@ -455,14 +428,14 @@
          ],
          "level" : "1",
          "parents" : [
-            "504427948",
-            "1280092559"
+            "1458892368",
+            "1075832729"
          ]
       },
       {
          "children" : [
-            "184239573",
-            "397881829"
+            "1258228578",
+            "69107047"
          ],
          "concept" : {
             "extent" : [
@@ -476,19 +449,19 @@
             ],
             "md5" : "20272c46e0e044f60c737c726d237339"
          },
-         "hash" : "1280092559",
+         "hash" : "1075832729",
          "idx" : 5,
          "labelAttributes" : [],
          "labelObjects" : [],
          "level" : "2",
          "parents" : [
-            "1046928504",
-            "686642036"
+            "1923267121",
+            "527278735"
          ]
       },
       {
          "children" : [
-            "805749328"
+            "561404508"
          ],
          "concept" : {
             "extent" : [
@@ -501,7 +474,7 @@
             ],
             "md5" : "cfc811af11c041bf57623e3f2621b050"
          },
-         "hash" : "397881829",
+         "hash" : "69107047",
          "idx" : 6,
          "labelAttributes" : [],
          "labelObjects" : [
@@ -509,14 +482,14 @@
          ],
          "level" : "1",
          "parents" : [
-            "1280092559",
-            "943600444"
+            "1075832729",
+            "282388580"
          ]
       },
       {
          "children" : [
-            "1280092559",
-            "943600444"
+            "1075832729",
+            "282388580"
          ],
          "concept" : {
             "extent" : [
@@ -533,7 +506,7 @@
             ],
             "md5" : "50013eb912283775510992fbf11ebd54"
          },
-         "hash" : "686642036",
+         "hash" : "527278735",
          "idx" : 7,
          "labelAttributes" : [
             "Has satellites"
@@ -541,14 +514,14 @@
          "labelObjects" : [],
          "level" : "3",
          "parents" : [
-            "1559099592"
+            "999670019"
          ]
       },
       {
          "children" : [
-            "397881829",
-            "1820836128",
-            "1619256952"
+            "69107047",
+            "1741567593",
+            "333506393"
          ],
          "concept" : {
             "extent" : [
@@ -564,7 +537,7 @@
             ],
             "md5" : "35682459768a331bb92e25331298ce10"
          },
-         "hash" : "943600444",
+         "hash" : "282388580",
          "idx" : 8,
          "labelAttributes" : [
             "Far"
@@ -572,12 +545,12 @@
          "labelObjects" : [],
          "level" : "2",
          "parents" : [
-            "686642036"
+            "527278735"
          ]
       },
       {
          "children" : [
-            "805749328"
+            "561404508"
          ],
          "concept" : {
             "extent" : [
@@ -591,7 +564,7 @@
             ],
             "md5" : "e4b98340e9a0126bc649ebce90f6fa18"
          },
-         "hash" : "1820836128",
+         "hash" : "1741567593",
          "idx" : 9,
          "labelAttributes" : [
             "Medium"
@@ -602,12 +575,12 @@
          ],
          "level" : "1",
          "parents" : [
-            "943600444"
+            "282388580"
          ]
       },
       {
          "children" : [
-            "805749328"
+            "561404508"
          ],
          "concept" : {
             "extent" : [
@@ -621,7 +594,7 @@
             ],
             "md5" : "99e07d5e151c3d9448294c495cae0930"
          },
-         "hash" : "1619256952",
+         "hash" : "333506393",
          "idx" : 10,
          "labelAttributes" : [
             "Big"
@@ -632,7 +605,7 @@
          ],
          "level" : "1",
          "parents" : [
-            "943600444"
+            "282388580"
          ]
       }
    ]

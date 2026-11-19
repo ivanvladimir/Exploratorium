@@ -321,7 +321,8 @@ svg.show-levels .node-level {
 	z-index: 200;
 }
 
-.attributes-label.hasexp, .attributes-label.hasexp * {
+.attributes-label.hasexp, .attributes-label.hasexp *,
+.objects-label.hasexp, .objects-label.hasexp * {
   cursor: pointer;
 }
 
@@ -336,11 +337,6 @@ svg.show-levels .node-level {
 
 .node * {
   cursor: grab;
-}
-
-.node .objects-label,
-.node .objects-label * {
-  cursor: pointer;
 }
 
 .drag * {

@@ -10,11 +10,15 @@ if [ -z "$INDIR" ]; then
     exit 1
 fi
 
+# Build a "read" command whose variables are the header's column names.
+# Columns without a name (e.g. spacer columns in the spreadsheet) are
+# read into a throwaway variable, so they don't shift the columns that
+# follow them.
 function get_reader {
     local header
     IFS= read -r header
     echo -n 'IFS=\| read -r '
-    tr \| ' ' <<<$header
+    awk -F'|' '{ for (i = 1; i <= NF; i++) printf "%s ", ($i == "" ? "_" : $i) }' <<<"$header"
 }
 
 function cat2sql {
@@ -77,11 +81,14 @@ function contexts2cat {
 	done
 }
 
+# Quote a value as an SQL string literal. SQL (and SQLite) only
+# escapes a single quote by doubling it; backslashes and double quotes
+# are literal and must be left alone, or TeX formulas would end up
+# with doubled backslashes.
 function esc {
     local s=$1
-    s=${s//\\/\\\\}
-   s=${s//\'/\'\'}    # THIS IS THE KEY: Replaces ' with '' (double single quote)
-    printf "'%s'" "$s"
+    local q="'"
+    printf "'%s'" "${s//$q/$q$q}"
 }
 
 function str_or_NULL {
@@ -89,6 +96,15 @@ function str_or_NULL {
 	echo -n NULL
     else
 	esc "$1"
+    fi
+}
+
+function int_or_NULL {
+    if [[ "$1" =~ ^[0-9]+$ ]]; then
+	echo -n "$1"
+    else
+	[ -n "$1" ] && echo "$0: ignoring non-numeric year '$1' for $2" >&2
+	echo -n NULL
     fi
 }
 
@@ -185,8 +201,9 @@ function render_object {
     local table=$2
 
     eval "$reader" || return 1
-    printf "INSERT INTO %s VALUES(%d,%s, %s, %s);\n" \
-	   "$table" "$object_id" "$(esc "$object_code")" "$(str_or_NULL "$reference")" "$(str_or_NULL "$year")"
+    printf "INSERT INTO %s VALUES(%d,%s,%s,%s);\n" \
+	   "$table" "$object_id" "$(esc "$object_code")" \
+	   "$(str_or_NULL "$reference")" "$(int_or_NULL "$year" "$object_code")"
 }
 
 function render_object_attribute {
@@ -212,14 +229,12 @@ function render_object_desc {
     local table=$2
     
     eval "$reader" || return 1
-
-    # 2. English description entry
-    printf "INSERT INTO object_desc (object_id, lang_code, label, title, desc) VALUES (%d, 'en', %s, %s, %s);\n" \
-        "$object_id" "$(esc "$object_label_en")" "$(str_or_NULL "$object_title_en")" "$(str_or_NULL "$object_desc_en")"
-
-    # 3. Spanish description entry
-    printf "INSERT INTO object_desc (object_id, lang_code, label, title, desc) VALUES (%d, 'es', %s, %s, %s);\n" \
-        "$object_id" "$(esc "$object_label_es")" "$(str_or_NULL "$object_title_es")" "$(str_or_NULL "$object_desc_es")"
+    printf "INSERT INTO %s VALUES(%d,'en',%s,%s,%s);\n" \
+	   "$table" "$object_id" "$(esc "$object_label_en")" \
+	   "$(str_or_NULL "$object_title_en")" "$(str_or_NULL "$object_desc_en")"
+    printf "INSERT INTO %s VALUES(%d,'es',%s,%s,%s);\n" \
+	   "$table" "$object_id" "$(esc "$object_label_es")" \
+	   "$(str_or_NULL "$object_title_es")" "$(str_or_NULL "$object_desc_es")"
 }
 
 (
