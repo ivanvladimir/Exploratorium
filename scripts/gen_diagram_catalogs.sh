@@ -12,7 +12,9 @@ ensure_static_files
 
 while read -r lang; do
   while IFS=\| read -r context_id context; do
-    diagram_dir=$(get_diagram_dir $lang $context)
+    diagram_dir=$(get_diagram_dir "$lang" "$context")
+    # Context code as an SQL string literal (quotes doubled)
+    context_sql=${context//\'/\'\'}
 
     mkdir -p "$diagram_dir"
     if [ ! -e "$diagram_dir"/pos.json ]; then
@@ -34,12 +36,12 @@ while read -r lang; do
 
     echo "
 SELECT Attribute,Class,Title,Formula,Explanation,Reference FROM v_attributes
-       WHERE Lang='$lang' AND Context='$context'" |
+       WHERE Lang='$lang' AND Context='$context_sql'" |
       sqlite3 -header "$DBDSN" > "$diagram_dir"/attr_desc.csv
 
     echo "
 SELECT Code,Label,Title,Description,Year,Reference FROM v_objects
-       WHERE Lang='$lang' AND Context='$context'" |
+       WHERE Lang='$lang' AND Context='$context_sql'" |
       sqlite3 -header "$DBDSN" > "$diagram_dir"/obj_desc.csv
 
     echo "

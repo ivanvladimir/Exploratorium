@@ -37,14 +37,14 @@ fi
 generated=0
 while read -r lang; do
   while read -r context; do
-    diagram_dir=$(get_diagram_dir $lang $context)
+    diagram_dir=$(get_diagram_dir "$lang" "$context")
     fname=$diagram_dir/lattice.json
     if [ -s "$fname" ] && ! grep -qxF -- "$context" <<< "$CHANGED_CODES"; then
       continue
     fi
     echo "Generating $fname"
     mkdir -p "$diagram_dir"
-    "$SCRIPTDIR"/gen_lattice.sh "$DBDSN" $context $lang > "$fname"
+    "$SCRIPTDIR"/gen_lattice.sh "$DBDSN" "$context" "$lang" > "$fname"
     generated=$((generated + 1))
   done < <(sqlite3 "$DBDSN" "SELECT code FROM context" | filter_contexts)
 done < <(sqlite3 "$DBDSN" "SELECT lang_code FROM lang")
