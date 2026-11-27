@@ -349,7 +349,7 @@
     function attributeClick(event, infobox) {
       event.stopPropagation();
 
-      const attr = event.target.parentNode.attribute;
+      const attr = d3.select(event.currentTarget).property("attribute");
       const infocont = infobox.select(".cont");
 
       const attr_id = getAttrId(attr);
@@ -474,7 +474,7 @@
           .attr("height", bounds.height + (config.TEXTBOX_PADDING * 2));
       }
       catch (e) {
-        window.setTimeout(() => textBoxSetBBox(textBox), 100);
+        window.setTimeout(() => textBoxSetBBox(textBox, config), 100);
       }
     }
 
@@ -516,13 +516,13 @@
       } else {
         const num = Number(scale);
         if (isNaN(num)) {
-          throw (`SCALE must be a number. Value given: {scale}`);
+          throw (`SCALE must be a number. Value given: ${scale}`);
         }
         scale = num;
       }
       config.SCALE = scale;
 
-      affected_configs = ['NODE_RADIUS', 'LABELS_ORIGIN_X', 'LABELS_ORIGIN_Y'];
+      const affected_configs = ['NODE_RADIUS', 'LABELS_ORIGIN_X', 'LABELS_ORIGIN_Y'];
       for (let key of affected_configs) {
         if (! (key in config))
           continue;
@@ -565,7 +565,7 @@
         ATTR_CLASS_DESC_SOURCE: "attr_class_desc.csv",
         OBJ_DESC_SOURCE: "obj_desc.csv"
       };
-      for (key in defaults) {
+      for (const key in defaults) {
         if (!config[key]) {
           config[key] = defaults[key];
         }
@@ -941,7 +941,7 @@
 
         const cs = window.getComputedStyle(this);
         const newStyle = document.createElement('div').style;
-        for (prop of cs)
+        for (const prop of cs)
           newStyle.setProperty(prop, cs.getPropertyValue(prop))
         this.__mystyle = newStyle;
       });
@@ -953,7 +953,7 @@
         if (!this.__mystyle)
           return
         const cs = this.__mystyle;
-        for (prop of cs)
+        for (const prop of cs)
           this.style[prop] = cs.getPropertyValue(prop);
       });
 

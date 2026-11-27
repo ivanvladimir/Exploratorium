@@ -227,7 +227,7 @@ function render_object_context {
 function render_object_desc {
     local reader=$1
     local table=$2
-
+    
     eval "$reader" || return 1
     printf "INSERT INTO %s VALUES(%d,'en',%s,%s,%s);\n" \
 	   "$table" "$object_id" "$(esc "$object_label_en")" \

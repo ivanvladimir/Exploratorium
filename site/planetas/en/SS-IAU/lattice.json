@@ -1,0 +1,625 @@
+{
+   "concepts" : [
+      {
+         "extent" : [
+            "Ceres",
+            "Earth",
+            "Jup",
+            "Kepler",
+            "Mars",
+            "Mer",
+            "Nep",
+            "Planet",
+            "Pluto",
+            "Sat",
+            "Sun",
+            "Uran",
+            "Ven"
+         ],
+         "intent" : [],
+         "md5" : "991b7b9501e2256e5d10ad07d9ed6a6b"
+      },
+      {
+         "extent" : [],
+         "intent" : [
+            "Around a star",
+            "Around the sun",
+            "Clean",
+            "Fusion",
+            "Has satellites",
+            "Spherical"
+         ],
+         "md5" : "d283c81b55d453ca423bf9649ff5b0df"
+      },
+      {
+         "extent" : [
+            "Earth",
+            "Jup",
+            "Kepler",
+            "Mars",
+            "Mer",
+            "Nep",
+            "Planet",
+            "Sat",
+            "Sun",
+            "Uran",
+            "Ven"
+         ],
+         "intent" : [
+            "Clean",
+            "Spherical"
+         ],
+         "md5" : "4a5ee2c39f32e368debdc1bc048c78fc"
+      },
+      {
+         "extent" : [
+            "Earth",
+            "Jup",
+            "Mars",
+            "Mer",
+            "Nep",
+            "Planet",
+            "Sat",
+            "Sun",
+            "Uran",
+            "Ven"
+         ],
+         "intent" : [
+            "Around the sun",
+            "Clean",
+            "Spherical"
+         ],
+         "md5" : "00f139141059115a653dd7c53e3e9081"
+      },
+      {
+         "extent" : [
+            "Earth",
+            "Jup",
+            "Mars",
+            "Nep",
+            "Sat",
+            "Sun",
+            "Uran"
+         ],
+         "intent" : [
+            "Around the sun",
+            "Clean",
+            "Has satellites",
+            "Spherical"
+         ],
+         "md5" : "6d9f212df81d6645da30a7faa1aa76b4"
+      },
+      {
+         "extent" : [
+            "Sun"
+         ],
+         "intent" : [
+            "Around the sun",
+            "Clean",
+            "Fusion",
+            "Has satellites",
+            "Spherical"
+         ],
+         "md5" : "b445591b2cca573f4f5892ebf84200a8"
+      },
+      {
+         "extent" : [
+            "Kepler"
+         ],
+         "intent" : [
+            "Around a star",
+            "Clean",
+            "Spherical"
+         ],
+         "md5" : "f831b07f67ccb767126c02dc684978e2"
+      },
+      {
+         "extent" : [
+            "Ceres",
+            "Earth",
+            "Jup",
+            "Mars",
+            "Mer",
+            "Nep",
+            "Planet",
+            "Pluto",
+            "Sat",
+            "Sun",
+            "Uran",
+            "Ven"
+         ],
+         "intent" : [
+            "Around the sun"
+         ],
+         "md5" : "bfe10386ea4a370e74a6816cff73e70e"
+      },
+      {
+         "extent" : [
+            "Earth",
+            "Jup",
+            "Mars",
+            "Nep",
+            "Pluto",
+            "Sat",
+            "Sun",
+            "Uran"
+         ],
+         "intent" : [
+            "Around the sun",
+            "Has satellites"
+         ],
+         "md5" : "bb16267d9a0f08697aea8572ed5ec94c"
+      }
+   ],
+   "context" : {
+      "Ceres" : {
+         "attributes" : [
+            "Around the sun"
+         ],
+         "id" : "Ceres",
+         "name" : "Ceres"
+      },
+      "Earth" : {
+         "attributes" : [
+            "Around the sun",
+            "Clean",
+            "Has satellites",
+            "Spherical"
+         ],
+         "id" : "Earth",
+         "name" : "Earth"
+      },
+      "Jup" : {
+         "attributes" : [
+            "Around the sun",
+            "Clean",
+            "Has satellites",
+            "Spherical"
+         ],
+         "id" : "Jup",
+         "name" : "Jupiter"
+      },
+      "Kepler" : {
+         "attributes" : [
+            "Around a star",
+            "Clean",
+            "Spherical"
+         ],
+         "id" : "Kepler",
+         "name" : "Kepler-186f"
+      },
+      "Mars" : {
+         "attributes" : [
+            "Around the sun",
+            "Clean",
+            "Has satellites",
+            "Spherical"
+         ],
+         "id" : "Mars",
+         "name" : "Mars"
+      },
+      "Mer" : {
+         "attributes" : [
+            "Around the sun",
+            "Clean",
+            "Spherical"
+         ],
+         "id" : "Mer",
+         "name" : "Mercury"
+      },
+      "Nep" : {
+         "attributes" : [
+            "Around the sun",
+            "Clean",
+            "Has satellites",
+            "Spherical"
+         ],
+         "id" : "Nep",
+         "name" : "Neptune"
+      },
+      "Planet" : {
+         "attributes" : [
+            "Around the sun",
+            "Clean",
+            "Spherical"
+         ],
+         "id" : "Planet",
+         "name" : "Planet"
+      },
+      "Pluto" : {
+         "attributes" : [
+            "Around the sun",
+            "Has satellites"
+         ],
+         "id" : "Pluto",
+         "name" : "Pluto"
+      },
+      "Sat" : {
+         "attributes" : [
+            "Around the sun",
+            "Clean",
+            "Has satellites",
+            "Spherical"
+         ],
+         "id" : "Sat",
+         "name" : "Saturn"
+      },
+      "Sun" : {
+         "attributes" : [
+            "Around the sun",
+            "Clean",
+            "Fusion",
+            "Has satellites",
+            "Spherical"
+         ],
+         "id" : "Sun",
+         "name" : "Sun"
+      },
+      "Uran" : {
+         "attributes" : [
+            "Around the sun",
+            "Clean",
+            "Has satellites",
+            "Spherical"
+         ],
+         "id" : "Uran",
+         "name" : "Uranus"
+      },
+      "Ven" : {
+         "attributes" : [
+            "Around the sun",
+            "Clean",
+            "Spherical"
+         ],
+         "id" : "Ven",
+         "name" : "Venus"
+      }
+   },
+   "links" : [
+      {
+         "source" : 0,
+         "target" : 2
+      },
+      {
+         "source" : 0,
+         "target" : 7
+      },
+      {
+         "source" : 2,
+         "target" : 3
+      },
+      {
+         "source" : 2,
+         "target" : 6
+      },
+      {
+         "source" : 3,
+         "target" : 4
+      },
+      {
+         "source" : 4,
+         "target" : 5
+      },
+      {
+         "source" : 5,
+         "target" : 1
+      },
+      {
+         "source" : 6,
+         "target" : 1
+      },
+      {
+         "source" : 7,
+         "target" : 3
+      },
+      {
+         "source" : 7,
+         "target" : 8
+      },
+      {
+         "source" : 8,
+         "target" : 4
+      }
+   ],
+   "nodes" : [
+      {
+         "children" : [
+            "629219582",
+            "1722197753"
+         ],
+         "concept" : {
+            "extent" : [
+               "Ceres",
+               "Earth",
+               "Jup",
+               "Kepler",
+               "Mars",
+               "Mer",
+               "Nep",
+               "Planet",
+               "Pluto",
+               "Sat",
+               "Sun",
+               "Uran",
+               "Ven"
+            ],
+            "intent" : [],
+            "md5" : "991b7b9501e2256e5d10ad07d9ed6a6b"
+         },
+         "hash" : "1722472381",
+         "idx" : 0,
+         "labelAttributes" : [],
+         "labelObjects" : [],
+         "level" : "5",
+         "parents" : []
+      },
+      {
+         "children" : [],
+         "concept" : {
+            "extent" : [],
+            "intent" : [
+               "Around a star",
+               "Around the sun",
+               "Clean",
+               "Fusion",
+               "Has satellites",
+               "Spherical"
+            ],
+            "md5" : "d283c81b55d453ca423bf9649ff5b0df"
+         },
+         "hash" : "374234338",
+         "idx" : 1,
+         "labelAttributes" : [],
+         "labelObjects" : [],
+         "level" : "0",
+         "parents" : [
+            "1151850448",
+            "1137054580"
+         ]
+      },
+      {
+         "children" : [
+            "444738435",
+            "1137054580"
+         ],
+         "concept" : {
+            "extent" : [
+               "Earth",
+               "Jup",
+               "Kepler",
+               "Mars",
+               "Mer",
+               "Nep",
+               "Planet",
+               "Sat",
+               "Sun",
+               "Uran",
+               "Ven"
+            ],
+            "intent" : [
+               "Clean",
+               "Spherical"
+            ],
+            "md5" : "4a5ee2c39f32e368debdc1bc048c78fc"
+         },
+         "hash" : "629219582",
+         "idx" : 2,
+         "labelAttributes" : [
+            "Spherical",
+            "Clean"
+         ],
+         "labelObjects" : [],
+         "level" : "4",
+         "parents" : [
+            "1722472381"
+         ]
+      },
+      {
+         "children" : [
+            "928289208"
+         ],
+         "concept" : {
+            "extent" : [
+               "Earth",
+               "Jup",
+               "Mars",
+               "Mer",
+               "Nep",
+               "Planet",
+               "Sat",
+               "Sun",
+               "Uran",
+               "Ven"
+            ],
+            "intent" : [
+               "Around the sun",
+               "Clean",
+               "Spherical"
+            ],
+            "md5" : "00f139141059115a653dd7c53e3e9081"
+         },
+         "hash" : "444738435",
+         "idx" : 3,
+         "labelAttributes" : [],
+         "labelObjects" : [
+            "Ven",
+            "Planet",
+            "Mer"
+         ],
+         "level" : "3",
+         "parents" : [
+            "629219582",
+            "1722197753"
+         ]
+      },
+      {
+         "children" : [
+            "1151850448"
+         ],
+         "concept" : {
+            "extent" : [
+               "Earth",
+               "Jup",
+               "Mars",
+               "Nep",
+               "Sat",
+               "Sun",
+               "Uran"
+            ],
+            "intent" : [
+               "Around the sun",
+               "Clean",
+               "Has satellites",
+               "Spherical"
+            ],
+            "md5" : "6d9f212df81d6645da30a7faa1aa76b4"
+         },
+         "hash" : "928289208",
+         "idx" : 4,
+         "labelAttributes" : [],
+         "labelObjects" : [
+            "Uran",
+            "Sat",
+            "Nep",
+            "Mars",
+            "Jup",
+            "Earth"
+         ],
+         "level" : "2",
+         "parents" : [
+            "444738435",
+            "392690467"
+         ]
+      },
+      {
+         "children" : [
+            "374234338"
+         ],
+         "concept" : {
+            "extent" : [
+               "Sun"
+            ],
+            "intent" : [
+               "Around the sun",
+               "Clean",
+               "Fusion",
+               "Has satellites",
+               "Spherical"
+            ],
+            "md5" : "b445591b2cca573f4f5892ebf84200a8"
+         },
+         "hash" : "1151850448",
+         "idx" : 5,
+         "labelAttributes" : [
+            "Fusion"
+         ],
+         "labelObjects" : [
+            "Sun"
+         ],
+         "level" : "1",
+         "parents" : [
+            "928289208"
+         ]
+      },
+      {
+         "children" : [
+            "374234338"
+         ],
+         "concept" : {
+            "extent" : [
+               "Kepler"
+            ],
+            "intent" : [
+               "Around a star",
+               "Clean",
+               "Spherical"
+            ],
+            "md5" : "f831b07f67ccb767126c02dc684978e2"
+         },
+         "hash" : "1137054580",
+         "idx" : 6,
+         "labelAttributes" : [
+            "Around a star"
+         ],
+         "labelObjects" : [
+            "Kepler"
+         ],
+         "level" : "1",
+         "parents" : [
+            "629219582"
+         ]
+      },
+      {
+         "children" : [
+            "444738435",
+            "392690467"
+         ],
+         "concept" : {
+            "extent" : [
+               "Ceres",
+               "Earth",
+               "Jup",
+               "Mars",
+               "Mer",
+               "Nep",
+               "Planet",
+               "Pluto",
+               "Sat",
+               "Sun",
+               "Uran",
+               "Ven"
+            ],
+            "intent" : [
+               "Around the sun"
+            ],
+            "md5" : "bfe10386ea4a370e74a6816cff73e70e"
+         },
+         "hash" : "1722197753",
+         "idx" : 7,
+         "labelAttributes" : [
+            "Around the sun"
+         ],
+         "labelObjects" : [
+            "Ceres"
+         ],
+         "level" : "4",
+         "parents" : [
+            "1722472381"
+         ]
+      },
+      {
+         "children" : [
+            "928289208"
+         ],
+         "concept" : {
+            "extent" : [
+               "Earth",
+               "Jup",
+               "Mars",
+               "Nep",
+               "Pluto",
+               "Sat",
+               "Sun",
+               "Uran"
+            ],
+            "intent" : [
+               "Around the sun",
+               "Has satellites"
+            ],
+            "md5" : "bb16267d9a0f08697aea8572ed5ec94c"
+         },
+         "hash" : "392690467",
+         "idx" : 8,
+         "labelAttributes" : [
+            "Has satellites"
+         ],
+         "labelObjects" : [
+            "Pluto"
+         ],
+         "level" : "3",
+         "parents" : [
+            "1722197753"
+         ]
+      }
+   ]
+}

@@ -1,10 +1,17 @@
 #!/bin/bash
 
+set -e
+
 source $(dirname "$0")/common.sh
 
 DBDSN=${1:-$DEFAULT_DBDSN}
 
 require_sqlite "$DBDSN"
+
+if ! sqlite3 "$DBDSN" "SELECT 1 FROM sqlite_schema WHERE type = 'view' AND name = 'v_objects'" | grep -qx 1; then
+  echo "$0: database '$DBDSN' does not include view 'v_objects'; rebuild it from db/ddl.sql and db/data.sql with scripts/init.sh" >&2
+  exit 1
+fi
 
 # Must run before the defaults below, or the committed pos.json and
 # config.js files would be shadowed by freshly written defaults.

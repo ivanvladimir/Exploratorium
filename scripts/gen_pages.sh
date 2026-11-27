@@ -8,7 +8,7 @@ require_sqlite "$DBDSN"
 
 ensure_static_files
 
-"$SCRIPTDIR"/gen_gravitytree.sh
+#"$SCRIPTDIR"/gen_gravitytree.sh
 
 ttdir="$PROJECTDIR/tt"
 gen_pages=$(realpath -s --relative-to="$ttdir" "$SCRIPTDIR"/gen_pages.pl)
