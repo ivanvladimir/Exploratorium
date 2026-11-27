@@ -200,8 +200,19 @@ close $pipe;
 my $js = decode_json($json_str) || die "Error parsing json";
 my $struct = json_get_structure($js);
 
-my $output_path = "${srcdir}../site/";
-my $main_template = "${srcdir}main.tt";
+# Templates and output default to tt/ (next to the master file) and
+# ../site/ from there; gen_pages.sh overrides both when the master
+# file lives in a project directory.
+sub dir_from_env {
+  my ($var, $default) = @_;
+  my $dir = $ENV{$var};
+  return $default if !defined($dir) || $dir eq '';
+  $dir .= '/' if $dir !~ /\/$/;
+  return $dir;
+}
+my $ttdir = dir_from_env('GEN_PAGES_TTDIR', $srcdir);
+my $output_path = dir_from_env('GEN_PAGES_SITEDIR', "${srcdir}../site/");
+my $main_template = "${ttdir}main.tt";
 
 my $tt;
 if ($target ne 'clean') {
@@ -233,7 +244,7 @@ foreach my $page (@{$struct->{'pages'}{'children'}}) {
 
   $target_found = 1 if $target eq $output;
 
-  my $template = $srcdir . $conf->{'template'};
+  my $template = $ttdir . $conf->{'template'};
   my $mod_output = -M $output_fname;
   next if $target ne '--force' &&
       -M $master_md > $mod_output &&

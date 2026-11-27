@@ -13,3 +13,16 @@
 /db/pg/data.psql
 /db/pg/ddl.psql
 /_Inline/
+# Generated per diagram, for every project's DIAGRAMSUBDIR
+/site/*/*/*/index.html
+/site/*/*/*/lattice.json
+/site/*/*/*/attr_class_desc.csv
+/site/*/*/*/attr_desc.csv
+/site/*/*/*/obj_desc.csv
+# Copied from projects/$PROJECT/ by the build
+/site/*/*/*/config.js
+/site/*/*/*/pos.json
+/site/project.css
+# Copied from static/ by the build
+/site/style.css
+/site/lib/reticulo.js

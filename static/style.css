@@ -260,14 +260,6 @@ text {
   stroke: black;
 }
 
-.textbox-box.box-distancia {
-	--fill: gray;
-}
-
-.textbox-box.box-tamaño {
-	--fill: red;
-}
-
 .textbox-box {
   fill: var(--fill);
 }
@@ -286,9 +278,12 @@ text {
 	fill: url(#textbox-bg-gradient);
 }
 
+/* Label fonts can be changed per project (projects/<name>/project.css)
+   through these variables, e.g. :root { --label-font-size: 18px; }.
+   reticulo.js spaces stacked labels according to the resulting size. */
 .textbox-text {
-  font-size: 24px;
-  font-family: Arial, sans-serif;
+  font-size: var(--label-font-size, 24px);
+  font-family: var(--label-font-family, Arial, sans-serif);
   padding: 15px;
 }
 
@@ -297,6 +292,7 @@ text {
 }
 
 .objects-label-text {
+	font-size: var(--object-label-font-size, var(--label-font-size, 24px));
 	fill: black;
 }
 
@@ -327,6 +323,7 @@ svg.show-levels .node-level {
 }
 
 .attributes-label-text {
+	font-size: var(--attribute-label-font-size, var(--label-font-size, 24px));
 	font-style: italic;
 	fill: black;
 }
@@ -451,38 +448,6 @@ svg.show-levels .node-level {
     transform: rotate(45deg);
   }
 }
-
-html {
-	--link-width: 3px;
-	--node-stroke-width: 3px;
-}
-
-.textbox-box.box-size {
-	--fill: #ffc66c;
-}
-
-.textbox-box.box-distance {
-	--fill: #6a3154;
-}
-
-.textbox-box.box-satellites {
-	--fill: #008AA4;
-}
-
-.textbox-box.box-orbit {
-	--fill: #63719C;
-}
-
-.textbox-box.box-spherical {
-	--fill: #BC7D85;
-}
-
-.textbox-box.box-fusion {
-	--fill: #FC8B2A;
-}
-
-
-
 
 img.portrait {
   width: 150px;

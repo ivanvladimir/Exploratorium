@@ -105,7 +105,7 @@ flowchart TD
         subgraph DAT[Generated Data Files]
             LJ[/"Lattice JSON<br/><i>site/theories/{en,es}/*/lattice.json</i>"/]
             CSV[/"CSV Catalogs<br/><i>site/theories/{en,es}/*/*.csv</i>"/]
-            LPJ[/"Node Positions JSON<br/><i>site/theories/{en,es}/*/pos.json</i>"/]
+            LPJ[/"Node Positions JSON<br/><i>projects/*/diagrams/{en,es}/*/pos.json</i>"/]
         end
         subgraph LIB[Javascript Libraries]
             D3[\d3 v7<br/><i>jsDelivr CDN]
@@ -114,7 +114,7 @@ flowchart TD
         end
         subgraph RES[Resources]
             HTML[/HTML docs<br/><i>site/*.html/]
-            CSS[\CSS<br/><i>site/style.css/]
+            CSS[\CSS<br/><i>static/style.css, projects/*/project.css/]
             I[\Images<br/><i>site/img/*/]
             JS[\Javascript<br/><i>site/lib/*.js/]
         end
@@ -152,6 +152,77 @@ location and they will always act by default on the project of which
 they are a part (unless `SCRIPTDIR` or `PROJECTDIR` is overriden, see
 the following section).
 
+#### Projects
+
+Everything that is specific to one site lives in a project directory,
+`projects/«name»/`, so several sites can share the same scripts,
+templates and generic styles. The project to build is selected with
+the `PROJECT` variable, which [`scripts/config.sh`](scripts/config.sh)
+sets to `planetas` by default; it can be overridden for a single run:
+
+```sh
+$ PROJECT=planetas scripts/build.sh
+```
+
+A project directory can contain:
+
+| File                                     | Required | Purpose                                                                                                                                          |
+|------------------------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------------------------|
+| `config.sh`                              | yes      | The project's settings (`DIAGRAMSUBDIR`, `DIAGRAM_FILTERS`, `DEPLOY_HOST`…). Sourced after `scripts/config.sh` has selected the project          |
+| `master-«lang».md`                       | yes      | The [master Markdown files](#master-markdowns), one per language in the database                                                                 |
+| `data.sql`                               | yes      | The project's data as SQL insert statements, loaded by [db_init.sh](#db_initsh) and written by [db_dump.sh](#db_dumpsh)                         |
+| `data.ods`                               | no       | The spreadsheet the data is maintained in; default input of `ods2db.sh`                                                                          |
+| `project.css`                            | no       | Styles for this project only (attribute class colours, label fonts…). Copied to `$SITEDIR/project.css`, which every page loads after `style.css` |
+| `images/`                                | no       | Images used by this project's pages, copied into `$SITEDIR/images/`                                                                              |
+| `diagrams/«lang»/«context»/config.js`    | no       | Each [diagram's](#diagram-pages) configuration, copied into its directory under `DIAGRAMDIR`                                                     |
+| `diagrams/«lang»/«context»/pos.json`     | no       | Each diagram's node positions, copied the same way                                                                                               |
+
+To start a new project, run `scripts/new_project.sh «name»`. It
+copies the master files of an existing project (`planetas` unless
+`-s «source»` is given), moving their diagram links to `«name»/`, and
+prints the steps to add its data. With `-c` it also copies the
+source's data, styles and diagram files, giving a complete project
+that builds right away with `PROJECT=«name» scripts/init.sh`.
+
+The shared parts are the scripts, the templates in [`tt`](tt), the
+database schema in `db/ddl.sql` and the [`static`](static) directory,
+which holds the generic [`style.css`](static/style.css) and the
+diagram viewer [`lib/reticulo.js`](static/lib/reticulo.js). Edit those
+two in `static/`: the build copies every file there to the same path
+under `$SITEDIR`, so the copies in `site/` are generated (and ignored
+by git) and are restored even if `site/` is emptied.
+
+The build copies the project's files and those in `static/` into the
+site every time it runs (see `install_static_files` and
+`install_project_files` in `scripts/common.sh`). A file in the site
+that is newer than its source, such as a `pos.json` you edited in
+place, is kept and reported: copy it back to its source to make the
+change permanent. The generated diagram files and the
+copied ones are ignored by git, so switching `PROJECT` and rebuilding
+swaps the whole site.
+
+##### Label fonts
+
+`project.css` can change the font of the diagram labels through CSS
+variables; the diagram viewer spaces stacked labels to match:
+
+```css
+:root {
+	--label-font-size: 18px;            /* all labels (default 24px) */
+	--label-font-family: Georgia, serif;
+	--attribute-label-font-size: 16px;  /* only attribute labels */
+	--object-label-font-size: 20px;     /* only object labels */
+}
+```
+
+The `LABELS_HEIGHT` value in each diagram's `config.js` is tuned for
+24px and is scaled by the actual font size. Set
+`ATTRIBUTES_LABELS_HEIGHT` or `OBJECTS_LABELS_HEIGHT` in `config.js`
+to fix the spacing explicitly instead.
+
+Without `PROJECT` the scripts fall back to the earlier single-project
+layout: master files in `tt/` and data in `db/data.sql`.
+
 #### Configuration and Overriding
 
 The following environment variables can be set to customize the
@@ -160,15 +231,22 @@ transformation process:
 | Name               | Default                         | Purpose                                                                                                                                                    |
 |--------------------|---------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `CONFIGFILE`       | `$SCRIPTDIR/config.sh`          | Configuration override by means of a sourced shell script. If the default config file is not found, it is not sourced                                      |
+| `PROJECT`          | ` ` (no value)                  | Name of the [project](#projects) to build; `scripts/config.sh` sets it to `planetas`. No value selects the old single-project layout                      |
+| `PROJECT_HOME`     | `$PROJECTDIR/projects/$PROJECT` | Location of the project directory. Its `config.sh` is sourced after `CONFIGFILE` selected the project                                                      |
 | `SCRIPTDIR`        | `$(dirname "$0")`               | Location of the script being invoked                                                                                                                       |
 | `PROJECTDIR`       | `$SCRIPTDIR/..`                 | Location of the project's main directory                                                                                                                   |
 | `DBDIR`            | `$PROJECTDIR/db`                | Location of the project's files related to the database, such as initialization SQL and data dumps, and in the case of SQLite, the database binary file    |
 | `SITEDIR`          | `$PROJECTDIR/site`              | Location of the web site's files. This is the DocumentRoot for a local web server and what is deployed to production                                       |
+| `TTDIR`            | `$PROJECTDIR/tt`                | Location of the page templates                                                                                                                             |
+| `STATICDIR`        | `$PROJECTDIR/static`            | Shared files copied into `$SITEDIR` on every build (`style.css`, `lib/reticulo.js`)                                                                       |
 | `DIAGRAMSUBDIR`    | `theories`                      | If `DIAGRAMDIR` is not overriden, sets the sub-directory under `$SITEDIR` where diagram files will be put                                                  |
 | `DIAGRAMDIR`       | `$SITEDIR/$DIAGRAMSUBDIR/%s/%s` | Location where the diagram files will be put. First `%s` is replaced by the language code, and the second by the context code                              |
 | `DIAGRAM_FILTERS`  | ` ` (no value)                  | Filters (grep regexps) separated by space selecting which diagrams will be worked on. No value selects all of them. See [gen_lattices.sh](#gen_latticessh) |
 | `DEFAULT_DBDSN`    | `$DBDIR/exploratorium.db`       | Data store name for the database connection. DBI notation, or just the file name of an SQLite database file                                                |
-| `MASTER_NAME`      | `master-%s.md`                  | Name scheme for the [master Markdown files](#master-markdowns) found in the [tt directory](tt). `%s` is replaced by the language code (i.e. `en` or `es`)  |
+| `MASTERDIR`        | `$PROJECT_HOME`                 | Location of the [master Markdown files](#master-markdowns). `$TTDIR` when there is no project                                                             |
+| `MASTER_NAME`      | `master-%s.md`                  | Name scheme for the master Markdown files found in `MASTERDIR`. `%s` is replaced by the language code (i.e. `en` or `es`)                                 |
+| `DATA_SQL`         | `$PROJECT_HOME/data.sql`        | The data as SQL statements, loaded by `db_init.sh` and written by `db_dump.sh`. `$DBDIR/data.sql` when there is no project                                |
+| `DATA_ODS`         | `$PROJECT_HOME/data.ods`        | Default input spreadsheet of `ods2db.sh`. No value when there is no project                                                                                |
 | `DEPLOY_HOST`      | `remo`                          | SSH Host where deployment is to connect to transfer the files of the web site. See [deploy.sh](#deploysh)                                                  |
 | `DEPLOY_REMOTEDIR` | `Exploratorium`                 | Path inside the deployment host where the web site files will reside. See [deploy.sh](#deploysh)                                                           |
 
@@ -188,18 +266,22 @@ found. Otherwise, an error will be produced.
 
 > ℹ️*Note: the configuration file is sourced **twice**: once before, and
 > once after the configuration globals are set. Complex commands
-> within this file are discouraged.*
+> within this file are discouraged. The same goes for the project's
+> `config.sh`, which is sourced before `CONFIGFILE`'s second pass, so
+> the general configuration file has the last word.*
 
 Example `scripts/config.sh` file:
 
 ```sh
+PROJECT=${PROJECT:-planetas}
 SITEDIR=$PROJECTDIR/test-site
-DIAGRAMSUBDIR=cosmo
 ```
 
-This will make `SITEDIR` derive its location from `PROJECTDIR`'s
-default value, and make `DIAGRAMDIR` be `$SITEDIR/cosmo`. All other
-variables will take their normal default values. Since the
+This selects the `planetas` project (unless `PROJECT` is set in the
+environment) and makes `SITEDIR` derive its location from
+`PROJECTDIR`'s default value. Settings that belong to the project,
+such as `DIAGRAMSUBDIR=planetas`, go in `projects/planetas/config.sh`.
+All other variables will take their normal default values. Since the
 configuration file is in the default location, it will provoke the
 overrides automatically.
 
@@ -441,8 +523,8 @@ stateDiagram
 ##### db_init.sh
 
 Take the SQL statements stored in `$DBDIR/ddl.sql` (SQL statements to
-build the database schema) and `$DBDIR/data.sql` (data dumped as SQL
-insert statements) and use them to set up a new database.
+build the database schema) and `$DATA_SQL` (data dumped as SQL
+insert statements, `data.sql` in the [project directory](#projects)) and use them to set up a new database.
 
 In the case of SQLite, if the database file already exists, it is
 forcefully renamed to its original name plus `.bak` as an additional
@@ -463,7 +545,7 @@ Invocation:
 
 Dump both the [schema of the database](#db_dump_ddlsh) and [its
 data](#db_dump_datash) and store them as SQL statements in
-`$DBDIR/ddl.sql` and `$DBDIR/data.sql` respectively.
+`$DBDIR/ddl.sql` and `$DATA_SQL` respectively.
 
 Invocation:
 
@@ -570,8 +652,8 @@ or
     through address `127.0.0.1`.
   * After altering the node positions proceed to generate the positional
     JSON code, select the "Copy" button and using a text editor replace
-    the content of the corresponding `pos.json` file with what has been
-    copied.
+    the content of the corresponding `pos.json` file in
+    `projects/«name»/diagrams/` with what has been copied.
   * After the modifying the size and offset of the diagram, copy the
     corresponding value and using a text editor open the corresponding
     `config.js` and replace the value of the `VIEWBOX` parameter.
@@ -613,14 +695,16 @@ matter of making template system accomodate more than two of them.
 
 ##### File Location
 
-Master Markdown files are located inside the [`tt` directory](tt),
-alongside the template files that generate the HTML markup. The
+Master Markdown files are located inside the [project
+directory](#projects) (`MASTERDIR`), while the template files that
+generate the HTML markup stay in the [`tt` directory](tt). The
 `MASTER_NAME` variable at the [script
 configuration](#configuration-and-overriding) level determines the
 actual name of the master files, which on the default configuration
 and with two languages (English or `en` and Spanish or `es`) derives
-to [`tt/master-en.md`](tt/master-en.md) and
-[`tt/master-es.md`](tt/master-es.md) respectively.
+to [`projects/planetas/master-en.md`](projects/planetas/master-en.md)
+and [`projects/planetas/master-es.md`](projects/planetas/master-es.md)
+respectively.
 
 ##### Master Markdown Structure
 
@@ -792,7 +876,7 @@ Copyright © 2017-2024, Mariana Espinosa Aldama
 
 A level-2 section titled `Pages`, where each (level-3) subsection
 represents a page within the site. Here is an example using extracts
-from the [Spanish master file](tt/master-es.md) illustrating three
+from the [Spanish master file](projects/planetas/master-es.md) illustrating three
 pages: the [`Home Page`](#home-page), a second one titled 
 `Guía de exploración` and a third one titled `Protofísica`:
 
@@ -944,7 +1028,8 @@ are five diagram input files:
   viewer and editor is initialized. Particularly it sets up
   `window.Config`, an object with a configuration parameters used by
   the diagram viewer. This file is to be put in place by the content
-  creator and edited manually.
+  creator and edited manually, in the project's
+  `diagrams/«lang»/«context»/` directory (see [Projects](#projects)).
 * `lattice.json` contains the actual data related to the lattice's
   strucutre and FCA properties such as intents and extents. It is
   automatically generated from the corresponding context located in
@@ -954,7 +1039,8 @@ are five diagram input files:
   lattice's nodes. The JSON data is provided by the Diagram Editor to
   the content creator as the diagram's nodes are visually
   arranged. The content has to be manually copy/pasted from a text box
-  in the editor into the file.
+  in the editor into the file, which also lives in the project's
+  `diagrams/«lang»/«context»/` directory.
 * `attr_desc.csv` and `attr_class_desc.csv` are catalogs related to
   documenting fields for Attributes and Attribute Classes,
   respecitvely. They provide text that is used as different kind of
@@ -1013,7 +1099,9 @@ and browsers, you can stretch the text box by dragging it by the
 corner if you wish to inspect the code.
 
 Now the JSON code has to be put in the corresponding diagram's
-`pos.json` file to make the changes permanent. To facilitate this, you
+`pos.json` file in the project directory
+(`projects/«name»/diagrams/«lang»/«context»/pos.json`) to make the
+changes permanent. To facilitate this, you
 can click on the `➂ JSON Copy` button to copy the entirety of the code
 onto the clipboard, allowing you to open the `pos.json` file with a text
 editor and replace the old code with a paste operation.
@@ -1025,7 +1113,7 @@ editor and replace the old code with a paste operation.
 The second row of the editor interface allows you to modify the
 viewboxe's geometry. To save those changes, click on the `➃ Viewbox
 Copy` button so that the geometry values are put onto the
-clipboard. Open the corresonding `config.js` file and replace the
+clipboard. Open the corresonding `config.js` file in the project directory and replace the
 `VIEWBOX` value with the new one. Respect the quotation marks while
 doing so.
 

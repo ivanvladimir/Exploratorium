@@ -16,7 +16,7 @@ require_sqlite "$DBDSN"
 function get_changed_contexts {
   local TMPFILE="$DBDIR"/tmp_gen_lattices_data.sql
   "$SCRIPTDIR"/db_dump_data.sh > "$TMPFILE"
-  [ ! -e "$TMPFILE.prev" ] && cp "$DBDIR"/data.sql "$TMPFILE.prev"
+  [ ! -e "$TMPFILE.prev" ] && cp "$DATA_SQL" "$TMPFILE.prev"
   diff -C 0 "$TMPFILE" "$TMPFILE.prev" |
     grep "INSERT INTO object_attribute" | cut -f4 -d, | sort -u |
     while read context_id; do echo -n $context_id,; done |

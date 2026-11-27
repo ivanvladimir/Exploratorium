@@ -8,7 +8,7 @@ if [ "$1" = -f ]; then
     shift
 fi
 
-INPUT=$1
+INPUT=${1:-$DATA_ODS}
 shift
 
 OUTPUT=${1:-$DEFAULT_DBDSN}
@@ -16,10 +16,11 @@ shift
 
 if [ -z "$INPUT" -o -z "$OUTPUT" ]; then
     cat >&2 <<EOF
-Usage: $0 [-f] file.ods [file.db]
+Usage: $0 [-f] [file.ods [file.db]]
 
  -f		force overwriting the output file
- file.ods	input OpenDocument Spreadsheet file
+ file.ods	input OpenDocument Spreadsheet file. Default: \$DATA_ODS
+		($DATA_ODS)
  file.db	output sqlite3 file. Default: \$DEFAULT_DBDSN
 		($DEFAULT_DBDSN)
 EOF

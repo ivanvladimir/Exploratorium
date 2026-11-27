@@ -4,6 +4,9 @@
 
     const ATTRIBUTES_TO_DOUBLE_COLUMN_AFTER = 5;
     const DEFAULT_STROKE_WIDTH = 3;
+    // Font size (px) that LABELS_HEIGHT in config.js is tuned for; it
+    // matches the default --label-font-size in style.css.
+    const DEFAULT_LABEL_FONT_SIZE = 24;
 
     const COOKIE_SPEC = {
       "show-legend": { "type": "bool", "def": 1 },
@@ -170,7 +173,7 @@
 
       let x = config.LABELS_ORIGIN_X;
       let y = config.LABELS_ORIGIN_Y -
-          (config.LABELS_HEIGHT / 2) -
+          (config.ATTRIBUTES_LABELS_HEIGHT / 2) -
           (config.LABELS_SEPARATION * 2);
       const start_y = y;
 
@@ -186,7 +189,7 @@
         }
         const textBox = d3.select(textBoxes[i]);
         textBox.attr("transform", `translate(${x} ${y})`);
-        y -= config.LABELS_HEIGHT + config.LABELS_SEPARATION;
+        y -= config.ATTRIBUTES_LABELS_HEIGHT + config.LABELS_SEPARATION;
       }
     }
 
@@ -198,12 +201,12 @@
 
       const x = config.LABELS_ORIGIN_X;
       let y = config.LABELS_ORIGIN_Y +
-          (config.LABELS_HEIGHT / 2) +
+          (config.OBJECTS_LABELS_HEIGHT / 2) +
           (config.LABELS_SEPARATION * 2);
       for (let i = 0; i < numLabels; i++) {
         const textBox = d3.select(textBoxes[i]);
         textBox.attr("transform", `translate(${x} ${y})`);
-        y += config.LABELS_HEIGHT + config.LABELS_SEPARATION;
+        y += config.OBJECTS_LABELS_HEIGHT + config.LABELS_SEPARATION;
       }
     }
 
@@ -572,6 +575,31 @@
         if (config.DEV_MODE) {
           config[key] += rand_str;
         }
+      }
+    }
+
+    // Stacked labels are LABELS_HEIGHT apart, a value tuned for
+    // DEFAULT_LABEL_FONT_SIZE. Scale it to the font size the CSS
+    // actually gives each kind of label (see --label-font-size in
+    // style.css), unless config.js sets ATTRIBUTES_LABELS_HEIGHT or
+    // OBJECTS_LABELS_HEIGHT explicitly.
+    function labelsHeightSetup(config, svg) {
+      const kinds = {
+        ATTRIBUTES_LABELS_HEIGHT: "attributes-label-text",
+        OBJECTS_LABELS_HEIGHT: "objects-label-text"
+      };
+      for (const key in kinds) {
+        if (config[key])
+          continue;
+        const probe = svg.append("text")
+              .classed(kinds[key] + " textbox-text", true)
+              .attr("visibility", "hidden")
+              .text("M");
+        const size = parseFloat(window.getComputedStyle(probe.node()).fontSize);
+        probe.remove();
+        config[key] = (size > 0) ?
+          config.LABELS_HEIGHT * size / DEFAULT_LABEL_FONT_SIZE :
+          config.LABELS_HEIGHT;
       }
     }
 
@@ -1179,6 +1207,8 @@
       const svg = elements.svg;
       const root_group = elements.root_group;
       const infobox = elements.infobox;
+
+      labelsHeightSetup(this.config, svg);
 
       svg.attr("viewBox", this.config.VIEWBOX);
       root_group.attr("transform", d3.zoomIdentity);

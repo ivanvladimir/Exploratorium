@@ -1,0 +1,51 @@
+/* Styles specific to the "planetas" project. The build copies this
+   file to site/project.css, which every page loads after style.css. */
+
+/* Label fonts (defaults in style.css: 24px, Arial). Uncomment to
+   change them; stacked labels are spaced to match.
+:root {
+	--label-font-size: 24px;
+	--label-font-family: Arial, sans-serif;
+	--attribute-label-font-size: 24px;
+	--object-label-font-size: 24px;
+}
+*/
+
+html {
+	--link-width: 3px;
+	--node-stroke-width: 3px;
+}
+
+.textbox-box.box-size {
+	--fill: #ffc66c;
+}
+
+.textbox-box.box-distance {
+	--fill: #6a3154;
+}
+
+.textbox-box.box-satellites {
+	--fill: #008AA4;
+}
+
+.textbox-box.box-orbit {
+	--fill: #63719C;
+}
+
+.textbox-box.box-spherical {
+	--fill: #BC7D85;
+}
+
+.textbox-box.box-fusion {
+	--fill: #FC8B2A;
+}
+
+/* Moved from style.css. No attribute class in data.sql uses these
+   codes any more; delete them if they are not needed. */
+.textbox-box.box-distancia {
+	--fill: gray;
+}
+
+.textbox-box.box-tamaño {
+	--fill: red;
+}
