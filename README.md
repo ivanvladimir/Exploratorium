@@ -115,7 +115,7 @@ flowchart TD
         subgraph RES[Resources]
             HTML[/HTML docs<br/><i>site/*.html/]
             CSS[\CSS<br/><i>static/style.css, projects/*/project.css/]
-            I[\Images<br/><i>site/img/*/]
+            I[\Images<br/><i>static/images/*/]
             JS[\Javascript<br/><i>site/lib/*.js/]
         end
         ED <---> LPJ
@@ -186,9 +186,10 @@ that builds right away with `PROJECT=«name» scripts/init.sh`.
 
 The shared parts are the scripts, the templates in [`tt`](tt), the
 database schema in `db/ddl.sql` and the [`static`](static) directory,
-which holds the generic [`style.css`](static/style.css) and the
-diagram viewer [`lib/reticulo.js`](static/lib/reticulo.js). Edit those
-two in `static/`: the build copies every file there to the same path
+which holds the generic [`style.css`](static/style.css), the
+diagram viewer [`lib/reticulo.js`](static/lib/reticulo.js),
+`lib/mathjax-config.js`, `favicon.ico` and the shared `images/`. Edit
+these in `static/`: the build copies every file there to the same path
 under `$SITEDIR`, so the copies in `site/` are generated (and ignored
 by git) and are restored even if `site/` is emptied.
 
@@ -238,7 +239,7 @@ transformation process:
 | `DBDIR`            | `$PROJECTDIR/db`                | Location of the project's files related to the database, such as initialization SQL and data dumps, and in the case of SQLite, the database binary file    |
 | `SITEDIR`          | `$PROJECTDIR/site`              | Location of the web site's files. This is the DocumentRoot for a local web server and what is deployed to production                                       |
 | `TTDIR`            | `$PROJECTDIR/tt`                | Location of the page templates                                                                                                                             |
-| `STATICDIR`        | `$PROJECTDIR/static`            | Shared files copied into `$SITEDIR` on every build (`style.css`, `lib/reticulo.js`)                                                                       |
+| `STATICDIR`        | `$PROJECTDIR/static`            | Shared files copied into `$SITEDIR` on every build (`style.css`, `favicon.ico`, `images/`, `lib/*.js`)                                                  |
 | `DIAGRAMSUBDIR`    | `theories`                      | If `DIAGRAMDIR` is not overriden, sets the sub-directory under `$SITEDIR` where diagram files will be put                                                  |
 | `DIAGRAMDIR`       | `$SITEDIR/$DIAGRAMSUBDIR/%s/%s` | Location where the diagram files will be put. First `%s` is replaced by the language code, and the second by the context code                              |
 | `DIAGRAM_FILTERS`  | ` ` (no value)                  | Filters (grep regexps) separated by space selecting which diagrams will be worked on. No value selects all of them. See [gen_lattices.sh](#gen_latticessh) |

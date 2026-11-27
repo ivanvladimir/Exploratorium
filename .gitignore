@@ -23,6 +23,9 @@
 /site/*/*/*/config.js
 /site/*/*/*/pos.json
 /site/project.css
-# Copied from static/ by the build
+# Copied from static/ (and projects/*/images/) by the build
 /site/style.css
+/site/favicon.ico
 /site/lib/reticulo.js
+/site/lib/mathjax-config.js
+/site/images/

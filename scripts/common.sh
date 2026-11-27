@@ -100,15 +100,16 @@ function require_inkscape {
 }
 
 # The site directory mixes generated files with hand-maintained ones
-# that are tracked in git (images/, lib/mathjax-config.js,
-# favicon.ico, .htaccess, gravity-tree/{style.css,config.js,fonts}).
+# that are tracked in git (.htaccess, cmm/, db/,
+# gravity-tree/{style.css,config.js,fonts}).
 # The generators never create those, so if SITEDIR is emptied or
 # recreated they would be lost. Restore any tracked file that is
 # missing from the working tree. Files that exist but were modified
 # are left untouched.
 #
 # Then copy in the files kept outside the site: the shared ones in
-# $STATICDIR (style.css, lib/reticulo.js) and the project's.
+# $STATICDIR (style.css, favicon.ico, images/, lib/*.js) and the
+# project's.
 function ensure_static_files {
   mkdir -p "$SITEDIR"
 
