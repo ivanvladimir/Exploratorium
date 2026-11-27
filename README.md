@@ -171,7 +171,7 @@ A project directory can contain:
 | `config.sh`                              | yes      | The project's settings (`DIAGRAMSUBDIR`, `DIAGRAM_FILTERS`, `DEPLOY_HOST`…). Sourced after `scripts/config.sh` has selected the project          |
 | `master-«lang».md`                       | yes      | The [master Markdown files](#master-markdowns), one per language in the database                                                                 |
 | `data.sql`                               | yes      | The project's data as SQL insert statements, loaded by [db_init.sh](#db_initsh) and written by [db_dump.sh](#db_dumpsh)                         |
-| `data.ods`                               | no       | The spreadsheet the data is maintained in; default input of `ods2db.sh`                                                                          |
+| `«any name».ods`                         | no       | The spreadsheet the data is maintained in (e.g. `data.ods`); default input of `ods2db.sh` when it is the project's only `.ods` file             |
 | `project.css`                            | no       | Styles for this project only (attribute class colours, label fonts…). Copied to `$SITEDIR/project.css`, which every page loads after `style.css` |
 | `images/`                                | no       | Images used by this project's pages, copied into `$SITEDIR/images/`                                                                              |
 | `diagrams/«lang»/«context»/config.js`    | no       | Each [diagram's](#diagram-pages) configuration, copied into its directory under `DIAGRAMDIR`                                                     |
@@ -247,7 +247,7 @@ transformation process:
 | `MASTERDIR`        | `$PROJECT_HOME`                 | Location of the [master Markdown files](#master-markdowns). `$TTDIR` when there is no project                                                             |
 | `MASTER_NAME`      | `master-%s.md`                  | Name scheme for the master Markdown files found in `MASTERDIR`. `%s` is replaced by the language code (i.e. `en` or `es`)                                 |
 | `DATA_SQL`         | `$PROJECT_HOME/data.sql`        | The data as SQL statements, loaded by `db_init.sh` and written by `db_dump.sh`. `$DBDIR/data.sql` when there is no project                                |
-| `DATA_ODS`         | `$PROJECT_HOME/data.ods`        | Default input spreadsheet of `ods2db.sh`. No value when there is no project                                                                                |
+| `DATA_ODS`         | the only `$PROJECT_HOME/*.ods`  | Default input spreadsheet of `ods2db.sh`: the project's only `.ods` file, whatever its name. No value when there are none, several, or no project         |
 | `DEPLOY_HOST`      | `remo`                          | SSH Host where deployment is to connect to transfer the files of the web site. See [deploy.sh](#deploysh)                                                  |
 | `DEPLOY_REMOTEDIR` | `Exploratorium`                 | Path inside the deployment host where the web site files will reside. See [deploy.sh](#deploysh)                                                           |
 

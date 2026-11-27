@@ -35,6 +35,19 @@ if [ -n "$PROJECT_CONFIGFILE" -a -e "$PROJECT_CONFIGFILE" ]; then
   source "$PROJECT_CONFIGFILE" || exit 1
 fi
 
+# The project's spreadsheet: its only .ods file, whatever its name
+# (e.g. data.ods or Theories.ods). With none or several, nothing is
+# printed and DATA_ODS has to be set explicitly.
+function project_ods_files {
+  [ -n "$PROJECT_HOME" ] && [ -d "$PROJECT_HOME" ] || return 0
+  find "$PROJECT_HOME" -maxdepth 1 -type f -iname '*.ods' | sort
+}
+function find_project_ods {
+  local files
+  files=$(project_ods_files)
+  [ -n "$files" ] && [ $(wc -l <<< "$files") -eq 1 ] && echo "$files"
+}
+
 DBDIR=${DBDIR:-$PROJECTDIR/db}
 SITEDIR=${SITEDIR:-$PROJECTDIR/site}
 TTDIR=${TTDIR:-$PROJECTDIR/tt}
@@ -46,7 +59,7 @@ DEFAULT_DBDSN=${DEFAULT_DBDSN:-$DBDIR/exploratorium.db}
 MASTERDIR=${MASTERDIR:-${PROJECT_HOME:-$TTDIR}}
 MASTER_NAME=${MASTER_NAME:-master-%s.md}
 DATA_SQL=${DATA_SQL:-${PROJECT_HOME:-$DBDIR}/data.sql}
-DATA_ODS=${DATA_ODS:-${PROJECT_HOME:+$PROJECT_HOME/data.ods}}
+DATA_ODS=${DATA_ODS:-$(find_project_ods)}
 DEPLOY_HOST=${DEPLOY_HOST:-remo}
 DEPLOY_REMOTEDIR=${DEPLOY_REMOTEDIR:-Exploratorium}
 

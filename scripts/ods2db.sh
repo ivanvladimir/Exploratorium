@@ -11,6 +11,15 @@ fi
 INPUT=${1:-$DATA_ODS}
 shift
 
+if [ -z "$INPUT" ] && [ $(project_ods_files | wc -l) -gt 1 ]; then
+    {
+	echo "$0: $PROJECT_HOME has several .ods files; keep only one, set"
+	echo "	DATA_ODS in its config.sh, or name the file to use:"
+	project_ods_files | sed 's/^/	  /'
+    } >&2
+    exit 1
+fi
+
 OUTPUT=${1:-$DEFAULT_DBDSN}
 shift
 
@@ -19,8 +28,9 @@ if [ -z "$INPUT" -o -z "$OUTPUT" ]; then
 Usage: $0 [-f] [file.ods [file.db]]
 
  -f		force overwriting the output file
- file.ods	input OpenDocument Spreadsheet file. Default: \$DATA_ODS
-		($DATA_ODS)
+ file.ods	input OpenDocument Spreadsheet file. Default: \$DATA_ODS,
+		which is the project's only .ods file when not set
+		(${DATA_ODS:-none found})
  file.db	output sqlite3 file. Default: \$DEFAULT_DBDSN
 		($DEFAULT_DBDSN)
 EOF
